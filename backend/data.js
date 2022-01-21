@@ -1,5 +1,5 @@
-// EXP. "OBJECT":
-module.exports = {  
+// EXP. "OBJECT" (ES6 SYMTAX):
+export default {
   // OBJECTS ARRAY:
   products: [
     {

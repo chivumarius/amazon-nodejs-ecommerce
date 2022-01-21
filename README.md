@@ -97,3 +97,12 @@ STEPS:
    9. npm start
    10. npm install axios
    11. change fetch to axios in HomeScreen# amazon-nodejs-ecommerce
+
+9. Install Babel For ES6 Syntax
+   1. npm install -D babel core, cli, node, preset-env
+   2. Create .babelrc and set presets to @babel/preset-env
+   3. "npm install -D nodemon"
+   4. Set Start: nodemon --watch backend --exec babel-node backend/server.js
+   5. Convert "require" to "import" in "server.js"
+   6. "npm start"
+

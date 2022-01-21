@@ -4,7 +4,7 @@
   "description": "Amazone eCommerce in JavaScript, NodeJS and MongoDB",
   "main": "index.js",
   "scripts": {
-    "start": "node backend/server.js",
+    "start": "nodemon --exec ./node_modules/.bin/babel-node backend/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -21,5 +21,12 @@
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.17.2"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.16.8",
+    "@babel/core": "^7.16.10",
+    "@babel/node": "^7.16.8",
+    "@babel/preset-env": "^7.16.11",
+    "nodemon": "^2.0.15"
   }
 }
