@@ -1,0 +1,25 @@
+{
+  "name": "amazon-nodejs-ecommerce",
+  "version": "1.0.0",
+  "description": "Amazone eCommerce in JavaScript, NodeJS and MongoDB",
+  "main": "index.js",
+  "scripts": {
+    "start": "node backend/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chivumarius/amazon-nodejs-ecommerce.git"
+  },
+  "keywords": [],
+  "author": "Marius Chivu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chivumarius/amazon-nodejs-ecommerce/issues"
+  },
+  "homepage": "https://github.com/chivumarius/amazon-nodejs-ecommerce#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.2"
+  }
+}
