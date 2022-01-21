@@ -1,10 +1,9 @@
 AMAZON - NODEJS ECOMMERCE
 
-
 STEPS:
 
-
 1. Create "Folder Structure"
+
    1. Create Root Folder as "amazon-nodejs-ecommerce"
    2. Add "frontend" and "backend" Folder
    3. Create "src" Folder in "frontend"
@@ -15,10 +14,8 @@ STEPS:
    8. Run: npm start
    9. Check Result in Browser
 
-
-
-
 2. Website Design
+
    1. Create "style.css"
    2. Link "style.css" to "index.html"
    3. Create "div.grid-container"
@@ -26,8 +23,8 @@ STEPS:
    5. Style "html", "body"
    6. Style "grid-container", "header", "main" and "footer"
 
-
 3. Create Static "Home" Screen
+
    1. Create "ul.products"
    2. Create "li"
    3. Create "div.product"
@@ -35,8 +32,8 @@ STEPS:
    5. Style "ul.products" and internal "divs"
    6. Duplicate "2 Times" to show "3 Products"
 
-
 4. Render Dynamic Home Screen
+
    1. Create data.js
    2. Export an array of 6 products
    3. Create screens/HomeScreen.js
@@ -51,8 +48,8 @@ STEPS:
    12. Set "main_container" "innerHTML" to "HomeScreen.render()"
    13. Set "Load Event" of "window" to "router()" Function
 
-
 5. Build Url Router
+
    1. Create "routes" as "route:screen" Object for "Home" Screen
    2. Create "utils.js"
    3. Export "parseRequestURL()"
@@ -64,8 +61,8 @@ STEPS:
    9. If "route" exists "render it", else render "Error404"
    10. Create "screens/Error404.js" and render "Error Message"
 
-
 6. Create Node.JS Server
+
    1. Run "npm init" in Root "amazon-nodejs-ecommerce" Folder
    2. "npm install express"
    3. Create "server.js"
@@ -76,16 +73,16 @@ STEPS:
    8. Return "products" in "data.js"
    9. Run "npm start"
 
-
 7. Load Products From Backend
+
    1. Edit "HomeScreen.js"
    2. Make "render" → "async"
    3. Fetch "products" from "/api/products" in "render()"
    4. Make "router()" → "async" and Call "await" → "HomeScreen.render()"
    5. Use "cors" library on "backend"
 
-
 8. Add Webpack
+
    1. cd frontend
    2. npm install -D webpack webpack-cli webpack-dev-server
    3. npm uninstall live-server
@@ -99,6 +96,7 @@ STEPS:
    11. change fetch to axios in HomeScreen# amazon-nodejs-ecommerce
 
 9. Install Babel For ES6 Syntax
+
    1. npm install -D babel core, cli, node, preset-env
    2. Create .babelrc and set presets to @babel/preset-env
    3. "npm install -D nodemon"
@@ -106,8 +104,8 @@ STEPS:
    5. Convert "require" to "import" in "server.js"
    6. "npm start"
 
-
 10. Enable Code Linting
+
     1. "npm install -D eslint"
     2. Install VSCode "eslint" Extension
     3. Create ".eslintrc" and Set "module.exports" for "env" to Node
@@ -117,4 +115,9 @@ STEPS:
     7. Set "extends" to "airbnb-base"
     8. Sset "parserOptions" to "ecmaVersion 11" and "sourceType" to "module"
     9. Set "rules" for "no-console" to 0 to ignore "linting" Error
-   
+
+11. Install VSCode Extension
+    1. JavaScript (ES6) code snippets
+    2. ES7 React/Redux/GraphQL/React-Native snippets
+    3. Prettier - Code formatter
+    4. HTML&LESS grammar injections
