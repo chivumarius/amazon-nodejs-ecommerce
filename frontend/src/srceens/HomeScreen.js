@@ -1,41 +1,37 @@
+/* eslint-disable linebreak-style */
 // IMPORT:
 import axios from 'axios';
 
-
-
-
 // OBJECT
 const HomeScreen = {
-  
+
   // ASYNC FUNC."RENDER()":
   render: async () => {
-   
     // METHOD"AXIOS()" → GET "DATA.JS" FROM "BACKEND" → BY SENDING "AJAX REQUEST" TO "SERVER":
     const response = await axios({
       url: 'http://localhost:5000/api/products',
-      
+
       headers: {
         'Content-Type': 'application/json',
       },
+    // eslint-disable-next-line linebreak-style
     });
 
     // CHECKING "RESPONSE":
     if (!response || response.statusText !== 'OK') {
       // RETURN AN ERROR:
-      return `<div>Error in getting data</div>`;
+      return '<div>Error in getting data</div>';
     }
 
     // OBJ. "DATA":
     const products = response.data;
-    
-
 
     // RETURN → "TEMPLATE LITERALS":
     return `
     <ul class="products">
       ${products
-        .map(
-          (product) => `
+    .map(
+      (product) => `
             <li>
               <div class="product">
                 <a href="/#/product/${product._id}">
@@ -54,13 +50,12 @@ const HomeScreen = {
               </div>
               </div>
             </li>      
-          `
-        )
-        .join('\n')}
+          `,
+    )
+    .join('\n')}
     `;
   },
 };
-
 
 // DEFAULT EXP.:
 export default HomeScreen;

@@ -106,3 +106,15 @@ STEPS:
    5. Convert "require" to "import" in "server.js"
    6. "npm start"
 
+
+10. Enable Code Linting
+    1. "npm install -D eslint"
+    2. Install VSCode "eslint" Extension
+    3. Create ".eslintrc" and Set "module.exports" for "env" to Node
+    4. Set VSCode Setting for "editor.codeActionsOnSave" "source.fixAll.eslint" to "true"
+    5. Check "result" for "linting" Error
+    6. "npm install eslint-config-airbnb-base" and "eslint-plugin-import"
+    7. Set "extends" to "airbnb-base"
+    8. Sset "parserOptions" to "ecmaVersion 11" and "sourceType" to "module"
+    9. Set "rules" for "no-console" to 0 to ignore "linting" Error
+   
