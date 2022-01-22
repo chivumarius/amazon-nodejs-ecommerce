@@ -124,6 +124,7 @@ STEPS:
     4. HTML&LESS grammar injections
 
 12. Create Rating Component
+
     1. Create "components/Rating.js"
     2. Link to "fontawesome.css" in "index.html"
     3. Create "div.rating"
@@ -134,3 +135,17 @@ STEPS:
     8. Style "div.rating", "span" and last "span"
     9. Edit "HomeScreen"
     10. Add "div.product-rating" and use Rating "component"
+
+13. Product Screen
+    1. Get "product id" from "request"
+    2. Implement "/api/product/:id" api
+    3. Send "Ajax Eequest" to "product api"
+    4. Create "link" → "back to result"
+    5. Create "div.details" with "3 Columns"
+    6. "Column 1" → for Product "image"
+    7. "Column 2" → for Product "information"
+    8. "Column 3" → form Product "action"
+    9. Style ".details" and "all columns"
+    10. Create "add to cart button" with "add-button id"
+    11. "after_render()" to Add "event" to the "button"
+    12. Redirect "user" to "cart/:product_id"
