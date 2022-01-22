@@ -3,7 +3,7 @@ import HomeScreen from './srceens/HomeScreen.js';
 import ProductScreen from './srceens/ProductScreen.js';
 import { parseRequestUrl } from './utils.js';
 import Error404Screen from './srceens/Error404Screen.js';
-
+import CartScreen from './srceens/CartScreen';
 
 
 
@@ -11,6 +11,8 @@ import Error404Screen from './srceens/Error404Screen.js';
 const routes = {
   '/': HomeScreen,
   '/product/:id': ProductScreen,
+  '/cart/:id': CartScreen,
+  '/cart': CartScreen,
 };
 
 

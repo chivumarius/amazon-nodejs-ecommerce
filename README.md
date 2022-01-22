@@ -162,7 +162,19 @@ STEPS:
     7. Create add to cart button with add-button id
 
 15. Product Screen Action
+
     1. "after_render()" to a"dd event" to the "button"
     2. Add "event handler" for the "button"
     3. Redirect "user" to "cart/:product_id"
     4. Implement "after_render" in "index.js"
+
+16. Add To Cart Action
+    1. create CartScreen.js
+    2. "parseRequestUrl"
+    3. "getProduct(request.id)"
+    4. "addToCart"
+    5. "getCartItems"
+    6. "cartItems.find"
+    7. "if existItem update qty"
+    8. "else add item"
+    9. "setCartItems"
