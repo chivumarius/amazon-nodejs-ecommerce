@@ -117,7 +117,20 @@ STEPS:
     9. Set "rules" for "no-console" to 0 to ignore "linting" Error
 
 11. Install VSCode Extension
+
     1. JavaScript (ES6) code snippets
     2. ES7 React/Redux/GraphQL/React-Native snippets
     3. Prettier - Code formatter
     4. HTML&LESS grammar injections
+
+12. Create Rating Component
+    1. Create "components/Rating.js"
+    2. Link to "fontawesome.css" in "index.html"
+    3. Create "div.rating"
+    4. Define Rating Object with "render()"
+    5. If "!props.value" → return Empty "div"
+    6. Else use "fa fa-star", "fa-star-half-o" and "fa-star-o"
+    7. last "span" for "props.text" || ''
+    8. Style "div.rating", "span" and last "span"
+    9. Edit "HomeScreen"
+    10. Add "div.product-rating" and use Rating "component"
