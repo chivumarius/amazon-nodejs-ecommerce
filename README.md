@@ -137,6 +137,7 @@ STEPS:
     10. Add "div.product-rating" and use Rating "component"
 
 13. Product Screen
+
     1. Get "product id" from "request"
     2. Implement "/api/product/:id" api
     3. Send "Ajax Eequest" to "product api"
@@ -149,3 +150,12 @@ STEPS:
     10. Create "add to cart button" with "add-button id"
     11. "after_render()" to Add "event" to the "button"
     12. Redirect "user" to "cart/:product_id"
+
+14. Product Screen UI
+    1. Create back to result link
+    2. Create div.details with 3 columns
+    3. Column 1 for product image
+    4. Column 2 for product information
+    5. Column 3 form product action
+    6. Style .details and all columns
+    7. Create add to cart button with add-button id

@@ -33,6 +33,35 @@ a:hover {
   color: #f08040;
 }
 
+/* ______________________________________________________
+    
+    SEC. "BUTTONS"
+_________________________________________________________ */
+
+/* "BUTTON" */
+button {
+  font: 1.6rem helvetica;
+  padding: 1rem;
+  border: 0.1rem #808080 solid;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+/* "HOVER" OVER "BUTTON" */
+button:hover {
+  border: 0.1rem #404040 solid;
+}
+
+/* "PRIMARY" BUTTON */
+button.primary {
+  background-color: #f0c040;
+}
+
+/*  CLS. "FW" ("FULL WIDTH") */
+.fw {
+  width: 100%;
+}
+
 /* CLS. "GRID-CONTAINER" */
 .grid-container {
   /* DISPLAY "GRID" */
@@ -166,7 +195,11 @@ footer {
   font-size: 1.2rem;
 }
 
-/* ___________________________________ */
+/* ______________________________________________________
+    
+    SEC. "RATINGS"
+_________________________________________________________ */
+
 /* CLS. "RATING" (FOR "STARTS") */
 .rating {
   color: #ffc000;
@@ -177,4 +210,72 @@ footer {
 .rating span:last-child {
   color: #444444;
   font-size: 1.4rem;
+}
+
+/* ______________________________________________________ 
+  
+    SEC. "PRODUCT DETAILS"
+_________________________________________________________ */
+
+/* CLS. "CONTENT" */
+.content {
+  padding: 1rem;
+}
+
+/* CLS. "DETAILS" */
+.details {
+  display: flex;
+  justify-content: space-between;
+
+  /* VERTICAL ALIGNMENT */
+  align-items: flex-start;
+
+  /* WRAP (COLUMNS WILL BE PUSH DOWN FOR SMALL SCREENS) */
+  flex-wrap: wrap;
+}
+
+/*  CLS. "DETAILS-IMAGE" */
+.details-image {
+  /* IMAGE WILL HAVE 2 SECTION FROM 4 SECTIONS */
+  flex: 2 1 60rem;
+}
+
+/* "IMG" FROM  CLS. "DETAILS-IMAGE" */
+.details-image img {
+  max-width: 60rem;
+  width: 100%;
+}
+
+/*  CLS. 'DETAUILS-INFO' & 'DETAILS-ACTION' */
+.details-info,
+.details-action {
+  flex: 1 1 30rem;
+}
+
+/* "UL" FOR CLS. "DETAUILS-INFO" & "DETAILS-ACTION" */
+.details-info ul,
+.details-action ul {
+  padding: 0;
+  /* REMOVING BULLETS */
+  list-style-type: none;
+}
+
+/* "H1" FROM CLS. "DETAUILS-INFO" */
+.details-info h1 {
+  font-size: 2rem;
+  margin: 0;
+}
+
+/* "LI" FROM CLS. "DETAUILS-INFO" & "DETAILS-ACTION"  */
+.details-info li,
+.details-action li {
+  margin-bottom: 1rem;
+}
+
+/* CLS. "DETAILS-ACTION" */
+.details-action {
+  border: 0.1rem #808080 solid;
+  border-radius: 0.5rem;
+  background-color: #f8f8f8;
+  padding: 1rem;
 }
