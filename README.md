@@ -152,6 +152,7 @@ STEPS:
     12. Redirect "user" to "cart/:product_id"
 
 14. Product Screen UI
+
     1. Create back to result link
     2. Create div.details with 3 columns
     3. Column 1 for product image
@@ -159,3 +160,9 @@ STEPS:
     5. Column 3 form product action
     6. Style .details and all columns
     7. Create add to cart button with add-button id
+
+15. Product Screen Action
+    1. "after_render()" to a"dd event" to the "button"
+    2. Add "event handler" for the "button"
+    3. Redirect "user" to "cart/:product_id"
+    4. Implement "after_render" in "index.js"

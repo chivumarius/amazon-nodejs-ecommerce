@@ -10,7 +10,22 @@ import Rating from '../components/Rating';
 // OBJECT:
 const ProductScreen = {
   
-  // ASYNC FUNC.:
+  // METH. "AFTER_FENDER":
+  after_render: () => {
+    // CALLING "PARSREQUEST" → TO GET "ACCESS" TO THE "ID" OF "PRODUCT"
+    const request = parseRequestUrl();
+    
+    // GET "ACCESS" TO THE "ELEMENT"
+    // WITH "EVENT LISTENER" → NAMED "CLICK":
+    document.getElementById('add-button')
+      .addEventListener('click', () => {
+      // DEFINING THE EVENT HANDLER:
+      document.location.hash = `/cart/${request.id}`;
+    });
+  },
+
+
+  // ASYNC FUNC.:  
   render: async () => {
     
     // REQUEST:

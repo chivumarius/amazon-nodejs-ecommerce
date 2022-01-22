@@ -37,6 +37,9 @@ const router = async () => {
   
   // RENDER "SCREEN":
   main.innerHTML = await screen.render();
+
+  // RENDER "SCREEN. AFTER_RENDER":
+  await screen.after_render();
 };
 
 

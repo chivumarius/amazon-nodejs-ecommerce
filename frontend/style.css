@@ -62,6 +62,16 @@ button.primary {
   width: 100%;
 }
 
+/* CLS. ".SUCCESS" */
+.success {
+  color: #40c040;
+}
+
+/* CLS. ".ERROR" */
+.error {
+  color: #c04040;
+}
+
 /* CLS. "GRID-CONTAINER" */
 .grid-container {
   /* DISPLAY "GRID" */
