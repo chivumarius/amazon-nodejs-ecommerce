@@ -210,6 +210,7 @@ STEPS:
     15. else rerender(CartScreen);
 
 19. Connect To MongoDB and Create Admin User
+
     1. npm install mongoose
     2. connect to mongodb
     3. create config.js
@@ -219,3 +220,8 @@ STEPS:
     7. create userSchema and userModel
     8. create userRoute
     9. create createadmin route
+
+20. Sign-in Screen UI
+    1. create SigninScreen
+    2. render email and password fields
+    3. style signin form
