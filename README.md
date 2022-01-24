@@ -222,6 +222,12 @@ STEPS:
     9. create createadmin route
 
 20. Sign-in Screen UI
+
     1. create SigninScreen
     2. render email and password fields
     3. style signin form
+
+21. Sign-in Screen Action
+    1. after_render handle form submit
+    2. create signin request in frontend
+    3. create signin api in backend

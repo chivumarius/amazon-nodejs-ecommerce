@@ -4,6 +4,7 @@
 import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
+import bodyParser from "body-parser";
 import data from "./data.js";
 import config from "./config";
 import userRouter from "./routers/userRouter";
@@ -28,6 +29,9 @@ const app = express();
 // USE PACKAGE "CORS":
 app.use(cors());
 
+// USE "DATA" IN FORMATUL "JSON" BY PACKAGE "BODY PARSER":
+app.use(bodyParser.json());
+
 // USE OF "USER ROUTER":
 app.use("/api/users", userRouter);
 
@@ -48,6 +52,15 @@ app.get("/api/products/:id", (req, res) => {
     // MESSAGE ERROR: "404":
     res.status(404).send({ message: "Product Not Found!" });
   }
+});
+
+// HAMDELLER  ALL  "ERROR" → IN "EXPRESS  INSTANCE":
+app.use((err, req, res, next) => {
+  // CHECKING ERROR "STATUS":
+  const status = err.name && err.name === "ValidationError" ? 400 : 500;
+
+  // ERROR MESSAGE:
+  res.status(status).send({ message: err.message });
 });
 
 // START THE "SERVER"
