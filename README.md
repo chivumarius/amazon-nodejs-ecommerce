@@ -192,6 +192,7 @@ STEPS:
     8. Add CSS Style
 
 18. Update and Delete Cart Items
+
     1. add qty select next to each item
     2. after_render()
     3. add change event to qty select
@@ -207,3 +208,14 @@ STEPS:
     13. setCartItems( getCartItems().filter)
     14. if id === parseRequestUrl().id? redirect to '/cart'
     15. else rerender(CartScreen);
+
+19. Connect To MongoDB and Create Admin User
+    1. npm install mongoose
+    2. connect to mongodb
+    3. create config.js
+    4. npm install dotenv
+    5. export MONGODB_URL
+    6. create models/userModel.js
+    7. create userSchema and userModel
+    8. create userRoute
+    9. create createadmin route
