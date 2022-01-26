@@ -228,6 +228,12 @@ STEPS:
     3. style signin form
 
 21. Sign-in Screen Action
+
     1. after_render handle form submit
     2. create signin request in frontend
     3. create signin api in backend
+
+22. Create Header Component
+    1. Update "index.html"
+    1. Add "header render" and "after render" to "router" function
+    1. Sow "header menu" based on "user logged in" or "not"

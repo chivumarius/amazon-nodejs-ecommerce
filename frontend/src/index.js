@@ -1,10 +1,11 @@
 // IMP. "HOMESCRIN.JS"l
-import HomeScreen from "./srceens/HomeScreen.js";
-import ProductScreen from "./srceens/ProductScreen.js";
-import { parseRequestUrl } from "./utils.js";
-import Error404Screen from "./srceens/Error404Screen.js";
+import HomeScreen from "./srceens/HomeScreen";
+import ProductScreen from "./srceens/ProductScreen";
+import { parseRequestUrl } from "./utils";
+import Error404Screen from "./srceens/Error404Screen";
 import CartScreen from "./srceens/CartScreen";
 import SigninScreen from "./srceens/SigninScreen";
+import Header from "./components/Header";
 
 // OBJECT "ROUTES" FUNC.:
 const routes = {
@@ -28,6 +29,15 @@ const router = async () => {
 
   // CONDITION:
   const screen = routes[parseUrl] ? routes[parseUrl] : Error404Screen;
+
+  // GETTING "HEADER-CONTAINER":
+  const header = document.getElementById("header-container");
+
+  // RENDER "GEADER":
+  header.innerHTML = await Header.render();
+
+  // CALLING "AFTER_RENDER" FOR "HEADER":
+  await Header.after_render();
 
   // GETTING ACCESS TO "MAIN-CONTAINER":
   const main = document.getElementById("main-container");

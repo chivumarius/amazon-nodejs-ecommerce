@@ -1,11 +1,9 @@
-/* eslint-disable linebreak-style */
-/* eslint-disable import/extensions */
 // IMPORTS:
 import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
 import bodyParser from "body-parser";
-import data from "./data.js";
+import data from "./data";
 import config from "./config";
 import userRouter from "./routers/userRouter";
 
@@ -14,7 +12,6 @@ mongoose
   .connect(config.MONGODB_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    useCreateIndex: true,
   })
   .then(() => {
     console.log("Connected to mongodb.");
