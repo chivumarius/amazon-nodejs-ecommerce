@@ -1,28 +1,33 @@
 /* eslint-disable linebreak-style */
 // IMPORT:
-import axios from 'axios';
-import Rating from '../components/Rating';
-
+import axios from "axios";
+import Rating from "../components/Rating";
+import { hideLoading, showLoading } from "../utils";
 
 // OBJECT
 const HomeScreen = {
-
   // ASYNC FUNC."RENDER()":
   render: async () => {
+    // FUNCTION CALLING:
+    showLoading();
+
     // METHOD"AXIOS()" → GET "DATA.JS" FROM "BACKEND" → BY SENDING "AJAX REQUEST" TO "SERVER":
     const response = await axios({
-      url: 'http://localhost:5000/api/products',
+      url: "http://localhost:5000/api/products",
 
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
-    // eslint-disable-next-line linebreak-style
+      // eslint-disable-next-line linebreak-style
     });
 
+    // FUNCTION CALLING:
+    hideLoading();
+
     // CHECKING "RESPONSE":
-    if (!response || response.statusText !== 'OK') {
+    if (!response || response.statusText !== "OK") {
       // RETURN AN ERROR:
-      return '<div>Error in getting data</div>';
+      return "<div>Error in getting data</div>";
     }
 
     // OBJ. "DATA":
@@ -32,8 +37,8 @@ const HomeScreen = {
     return `
     <ul class="products">
       ${products
-    .map(
-      (product) => `
+        .map(
+          (product) => `
             <li>
               <div class="product">
                 
@@ -63,9 +68,9 @@ const HomeScreen = {
                 </div>
               </div>
             </li>      
-          `,
-    )
-    .join('\n')}
+          `
+        )
+        .join("\n")}
     `;
   },
 };

@@ -63,6 +63,54 @@ button.primary {
   background-color: #f0c040;
 }
 
+/* ______________________________________________________
+    
+    SEC. "OVERLAY"
+_________________________________________________________ */
+
+/* CLS. "OVERLAY" */
+.overlay {
+  /* WILL NOT BE DISPLAYED */
+  display: none;
+  position: fixed;
+
+  /* PLACING BEHIND OTHER STYLES */
+  z-index: 1000;
+
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
+  /* TRANSPARENT BACKGROUND COLOR */
+  background-color: rgba(16, 16, 16, 0.5);
+}
+
+/* CLS. "ACTIVE" → FROM CLS. "OVERLAY" */
+.overlay.active {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+}
+
+/* SELECTING DIRECT "DIV" → FROM CLS. "OVERLAY" */
+.overlay > div {
+  background-color: #ffffff;
+  color: #000000;
+  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  max-width: 40rem;
+}
+
+/* "ALL ITEMS" FROM DIRECT "DIV" → FROM CLS. "OVERLAY" */
+.overlay > div > * {
+  margin: 2rem;
+}
+
 /*  CLS. "FW" ("FULL WIDTH") */
 .fw {
   width: 100%;

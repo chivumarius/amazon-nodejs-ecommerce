@@ -23,3 +23,46 @@ export const rerender = async (component) => {
   // CALLING "COMPONENT.AFTER_RENDER()":
   await component.after_render();
 };
+
+// EXPORTED FUNCTION "SHOW LOADING":
+export const showLoading = () => {
+  // ADD LISTENER FOR CLS. "ACTIVE":
+  document.getElementById("loading-overlay").classList.add("active");
+};
+
+// EXPORTED FUNCTION "HIDE LOADING":
+export const hideLoading = () => {
+  // REMOVE LISTENER FROM CLS. "ACTIVE":
+  document.getElementById("loading-overlay").classList.remove("active");
+};
+
+// EXPORTED FUNCTION "SHOW MESSAGE":
+export const showMessage = (message, callback) => {
+  // MESSAGE
+  document.getElementById("message-overlay").innerHTML = `
+    <div>
+      <!-- MESSAHE -->  
+     <div id="message-overlay-content">${message}</div>
+    
+      <!-- BUTTON -->  
+      <button id="message-overlay-close-button">OK</button>
+    </div>
+  `;
+
+  // ADD LISTENER FOR CLS. "ACTIVE":
+  document.getElementById("message-overlay").classList.add("active");
+
+  // EVENT LISTENER → FOR "CLOSE" BUTTON:
+  document
+    .getElementById("message-overlay-close-button")
+    .addEventListener("click", () => {
+      // REMOVE LISTENER FROM CLS. "ACTIVE":
+      document.getElementById("message-overlay").classList.remove("active");
+
+      // IF THERE IS "CALLBACK"
+      if (callback) {
+        // CALL IT:
+        callback();
+      }
+    });
+};

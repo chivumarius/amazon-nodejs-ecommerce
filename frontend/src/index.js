@@ -1,7 +1,7 @@
 // IMP. "HOMESCRIN.JS"l
 import HomeScreen from "./srceens/HomeScreen";
 import ProductScreen from "./srceens/ProductScreen";
-import { parseRequestUrl } from "./utils";
+import { parseRequestUrl, showLoading, hideLoading } from "./utils";
 import Error404Screen from "./srceens/Error404Screen";
 import CartScreen from "./srceens/CartScreen";
 import SigninScreen from "./srceens/SigninScreen";
@@ -18,6 +18,9 @@ const routes = {
 
 // ASYNC FUNC. "ROUTER" :
 const router = async () => {
+  // FUNCTION CALLING:
+  showLoading();
+
   // REQUEST:
   const request = parseRequestUrl();
 
@@ -47,6 +50,9 @@ const router = async () => {
 
   // RENDER "SCREEN. AFTER_RENDER":
   await screen.after_render();
+
+  // FUNCTION CALLING:
+  hideLoading();
 };
 
 // SETTING "LOAD"  EVENT → TO "ROUTER()" FUNC.:

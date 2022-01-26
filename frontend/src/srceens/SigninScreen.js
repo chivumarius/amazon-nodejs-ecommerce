@@ -1,6 +1,7 @@
 // IMPORTS:
 import { signin } from "../api";
 import { getUserInfo, setUserInfo } from "../localStorage";
+import { showLoading, hideLoading, showMessage } from "../utils";
 
 // OBJECT:
 const SigninScreen = {
@@ -14,6 +15,9 @@ const SigninScreen = {
         // AFTER "REFRESHING" AND "PRESSING" THE "BUTTON:"
         e.preventDefault();
 
+        // FUNCTION CALLING:
+        showLoading();
+
         // CALLING FUNC. "SIGNIN" API
         // & SENDING "REQUEST" TO THE "SERVER":
         const data = await signin({
@@ -21,10 +25,13 @@ const SigninScreen = {
           password: document.getElementById("password").value,
         });
 
+        // FUNCTION CALLING:
+        hideLoading();
+
         // IF THERE IS AN "ERROR":
         if (data.error) {
-          // ERROR ALERT:
-          alert(data.error);
+          // SHOW ERROR MESSAGE:
+          showMessage(data.error);
         } else {
           // SAVING "USER INFO" → BASED ON "DATA":
           setUserInfo(data);

@@ -1,45 +1,42 @@
-
 // IMPORTS:
-import { parseRequestUrl } from '../utils';
-import { getProduct } from '../api';
-import Rating from '../components/Rating';
-
-
-
+import { parseRequestUrl, showLoading, hideLoading } from "../utils";
+import { getProduct } from "../api";
+import Rating from "../components/Rating";
 
 // OBJECT:
 const ProductScreen = {
-  
   // METH. "AFTER_FENDER":
   after_render: () => {
     // CALLING "PARSREQUEST" → TO GET "ACCESS" TO THE "ID" OF "PRODUCT"
     const request = parseRequestUrl();
-    
+
     // GET "ACCESS" TO THE "ELEMENT"
     // WITH "EVENT LISTENER" → NAMED "CLICK":
-    document.getElementById('add-button')
-      .addEventListener('click', () => {
+    document.getElementById("add-button").addEventListener("click", () => {
       // DEFINING THE EVENT HANDLER:
       document.location.hash = `/cart/${request.id}`;
     });
   },
 
-
-  // ASYNC FUNC.:  
+  // ASYNC FUNC.:
   render: async () => {
-    
     // REQUEST:
     const request = parseRequestUrl();
-    
+
+    // FUNCTION CALLING:
+    showLoading();
+
     // GETTING PRODUCT:
     const product = await getProduct(request.id);
-    
+
     // IF "PRODUCT DO NOT EXIST"
     if (product.error) {
       return `<div>${product.error}</div>`;
     }
 
-    
+    // FUNCTION CALLING:
+    hideLoading();
+
     // RETURN - "TEMPLATE LITERARS" → "PAGE STRUCTURE DESIGN":
     return `
       
@@ -121,7 +118,6 @@ const ProductScreen = {
     `;
   },
 };
-
 
 // EXPORT:.:
 export default ProductScreen;
