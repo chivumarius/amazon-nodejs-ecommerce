@@ -51,3 +51,48 @@ export const getUserInfo = () =>
       JSON.parse(localStorage.getItem("userInfo"))
     : // INSERT "USER INFO" → IF THE "USER" DOES NOT EXIST
       { name: "", email: "", password: "" };
+
+// EXP. FUNC. "GET SHIPPING()"
+export const getShipping = () => {
+  // GETTING ITEM "SHIPPING"
+  const shipping = localStorage.getItem("shipping")
+    ? JSON.parse(localStorage.getItem("shipping"))
+    : {
+        address: "",
+        city: "",
+        postalCode: "",
+        country: "",
+      };
+
+  // RETURN:
+  return shipping;
+};
+
+// EXP. FUNC. "SET SHIPPING()"
+export const setShipping = ({
+  address = "",
+  city = "",
+  postalCode = "",
+  country = "",
+}) => {
+  // SAVING DATA IN "LOCAL STORAGE"
+  localStorage.setItem(
+    "shipping",
+    JSON.stringify({ address, city, postalCode, country })
+  );
+};
+
+// EXP. FUNC. "GET PAYMENT()"
+export const getPayment = () => {
+  const payment = localStorage.getItem("payment")
+    ? JSON.parse(localStorage.getItem("payment"))
+    : {
+        paymentMethod: "paypal",
+      };
+  return payment;
+};
+
+// EXP. FUNC. "SET PAYMENT()"
+export const setPayment = ({ paymentMethod = "paypal" }) => {
+  localStorage.setItem("payment", JSON.stringify({ paymentMethod }));
+};

@@ -441,7 +441,7 @@ _________________________________________________________ */
 
   /* "CENTER" ALIGNMENT */
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
 
   height: 100%;
 }
@@ -468,4 +468,31 @@ _________________________________________________________ */
 /* "H1" FROM CLS. "FORM-CONTAINER" */
 .form-container h1 {
   font-size: 2.5rem;
+}
+
+/* ______________________________________________________ 
+  
+    SEC. "CHECHOUT"
+_________________________________________________________ */
+
+/* CLS. "CHECKOUT-STEPS" */
+.checkout-steps {
+  display: flex;
+  justify-content: space-between;
+  width: 40rem;
+  margin: 1rem auto;
+}
+
+/* DIRECT "DIV" → FROM` CLS. "CHECKOUT-STEPS" */
+.checkout-steps > div {
+  border-top: 0.3rem #c0c0c0 solid;
+  color: #c0c0c0;
+  flex: 1 1;
+  padding-top: 1rem;
+}
+
+/* CLS. "ACTIVE" → FROM DIRECT "DIV" → FROM` CLS. "CHECKOUT-STEPS" */
+.checkout-steps > div.active {
+  color: #f08000;
+  border-top-color: #f08000;
 }

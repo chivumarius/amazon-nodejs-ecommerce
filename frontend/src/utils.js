@@ -1,3 +1,6 @@
+// IMPORT:
+import { getCartItems } from "./localStorage";
+
 // EXPORTED FUNCTION "PARSE REQUEST URL":
 export const parseRequestUrl = () => {
   // GETTING "URL":
@@ -65,4 +68,20 @@ export const showMessage = (message, callback) => {
         callback();
       }
     });
+};
+
+// EXPORTED FUNCTION "REDIRECT USER":
+export const redirectUser = () => {
+  // SHOW NUMBER OF ITEMS:
+  console.log(getCartItems().length);
+
+  // REDIRECT CONDITION:
+  // CHECKING IF THERE ARE "ITEMS" ON THE "CART":
+  if (getCartItems().length !== 0) {
+    // REDIRECT "USER" → TO "SHIPPING" SCREEN:
+    document.location.hash = "/shipping";
+  } else {
+    // REDIRECT "USER" → TO "HOME" SCREEN:
+    document.location.hash = "/";
+  }
 };

@@ -8,6 +8,8 @@ import SigninScreen from "./srceens/SigninScreen";
 import Header from "./components/Header";
 import RegisterScreen from "./srceens/RegisterScreen";
 import ProfileScreen from "./srceens/ProfileScreen";
+import ShippingScreen from "./srceens/ShippingScreen";
+import PaymentScreen from "./srceens/PaymentScreen";
 
 // OBJECT "ROUTES" FUNC.:
 const routes = {
@@ -18,6 +20,8 @@ const routes = {
   "/signin": SigninScreen,
   "/register": RegisterScreen,
   "/profile": ProfileScreen,
+  "/shipping": ShippingScreen,
+  "/payment": PaymentScreen,
 };
 
 // ASYNC FUNC. "ROUTER" :

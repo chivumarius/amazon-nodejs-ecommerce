@@ -1,7 +1,7 @@
 // IMPORTS:
 import { signin } from "../api";
 import { getUserInfo, setUserInfo } from "../localStorage";
-import { showLoading, hideLoading, showMessage } from "../utils";
+import { showLoading, hideLoading, showMessage, redirectUser } from "../utils";
 
 // OBJECT:
 const SigninScreen = {
@@ -36,8 +36,8 @@ const SigninScreen = {
           // SAVING "USER INFO" → BASED ON "DATA":
           setUserInfo(data);
 
-          // REDIRECT USER → TO "HOME PAGE":
-          document.location.hash = "/";
+          // CALLING "REDIRECT USER":
+          redirectUser();
         }
       });
   },
@@ -46,8 +46,8 @@ const SigninScreen = {
   render: () => {
     // IF "USER NAME" EXIST:
     if (getUserInfo().name) {
-      // REDIRECT "USER" → TO "HOME PAGE":
-      document.location.hash = "/";
+      // CALLING "REDIRECT USER":
+      redirectUser();
     }
 
     // TEMPLATE LITERALS:
