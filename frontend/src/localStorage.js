@@ -36,6 +36,12 @@ export const setUserInfo = ({
   );
 };
 
+// EXP. FUNC. "CLEAR USER()"
+export const clearUser = () => {
+  // REMOVING ITEMS:
+  localStorage.removeItem("userInfo");
+};
+
 // EXP. FUNC. "GET USER INFO()"
 // GETTING  GET "USER INFO()" → FROM "LOCAL STORAGE":
 export const getUserInfo = () =>

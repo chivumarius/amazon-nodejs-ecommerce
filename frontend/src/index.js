@@ -7,6 +7,7 @@ import CartScreen from "./srceens/CartScreen";
 import SigninScreen from "./srceens/SigninScreen";
 import Header from "./components/Header";
 import RegisterScreen from "./srceens/RegisterScreen";
+import ProfileScreen from "./srceens/ProfileScreen";
 
 // OBJECT "ROUTES" FUNC.:
 const routes = {
@@ -16,6 +17,7 @@ const routes = {
   "/cart": CartScreen,
   "/signin": SigninScreen,
   "/register": RegisterScreen,
+  "/profile": ProfileScreen,
 };
 
 // ASYNC FUNC. "ROUTER" :
@@ -50,8 +52,8 @@ const router = async () => {
   // RENDER "SCREEN":
   main.innerHTML = await screen.render();
 
-  // RENDER "SCREEN. AFTER_RENDER":
-  await screen.after_render();
+  // IF "SCREEN. AFTER_RENDER" EXIST → THEN CALL IT:
+  if (screen.after_render) await screen.after_render();
 
   // FUNCTION CALLING:
   hideLoading();

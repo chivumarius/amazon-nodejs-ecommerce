@@ -2,7 +2,7 @@
 import express from "express";
 import expressAsyncHandler from "express-async-handler";
 import User from "../models/userModel";
-import { generateToken } from "../utils";
+import { generateToken, isAuth } from "../utils";
 
 // CREATING "ROUTER" → FROM "EXPRESS":
 const userRouter = express.Router();
@@ -88,6 +88,41 @@ userRouter.post(
         email: createdUser.email,
         isAdmin: createdUser.isAdmin,
         token: generateToken(createdUser),
+      });
+    }
+  })
+);
+
+// (4) "ROUTA 4" -- "PUT(/:ID" (WITH "IS AUTH" MIDDLEWARE):
+userRouter.put(
+  "/:id",
+  isAuth,
+  expressAsyncHandler(async (req, res) => {
+    // FIND "USER" BY "ID":
+    const user = await User.findById(req.params.id);
+
+    // CHECKING: IF THE "USER" DOESN'T EXIST:
+    if (!user) {
+      // ERROR MESSAGE "404":
+      res.status(404).send({
+        message: "User Not Found",
+      });
+    } else {
+      // UPDATING (SETTING) "USER INFO" → INTO "DB":
+      user.name = req.body.name || user.name;
+      user.email = req.body.email || user.email;
+      user.password = req.body.password || user.password;
+
+      // SAVING "USER UPDATES":
+      const updatedUser = await user.save();
+
+      // SENDING "RESPONSE" TO THE "FRONTEND":
+      res.send({
+        _id: updatedUser._id,
+        name: updatedUser.name,
+        email: updatedUser.email,
+        isAdmin: updatedUser.isAdmin,
+        token: generateToken(updatedUser),
       });
     }
   })

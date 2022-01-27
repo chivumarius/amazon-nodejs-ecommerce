@@ -240,6 +240,23 @@ STEPS:
     1. Sow "header menu" based on "user logged in" or "not"
 
 23. Register Screen Action
+
     1. "after_render" Handle form "submit"
     2. Create "register" request in "frontend"
     3. Create "register api" in "backend"
+
+24. User Profile UI
+
+    1. create ProfileScreen.js
+    2. style elements
+
+25. User Profile Data
+
+    1. Create profile info backend api
+    2. Create user orders api
+    3. Call apis in the backend
+
+26. Update Profile
+    1. handle form submit
+    2. send request to backend
+    3. create api to update profile
