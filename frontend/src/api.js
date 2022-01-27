@@ -62,3 +62,37 @@ export const signin = async ({ email, password }) => {
     return { error: err.response.data.message || err.message };
   }
 };
+
+// EXPORTED ASYNC FUNCTION "REGISTER":
+export const register = async ({ name, email, password }) => {
+  // "TRY .. CATCH" BLOCKS:
+  try {
+    // SENDING "AJAX REQUEST" BY "AXIOS()":
+    const response = await axios({
+      url: `${apiUrl}/api/users/register`,
+      method: "POST",
+      header: {
+        "Content-Type": "application/json",
+      },
+
+      // DATA "SENT" TO "SERVER":
+      data: {
+        name,
+        email,
+        password,
+      },
+    });
+
+    // RESPONSE  EVALUATION:
+    if (response.statusText !== "OK") {
+      throw new Error(response.data.message);
+    }
+
+    // RETURN (FOR SUCCESS CASE):
+    return response.data;
+  } catch (err) {
+    // IN CASE OF ERROR:
+    console.log(err);
+    return { error: err.response.data.message || err.message };
+  }
+};

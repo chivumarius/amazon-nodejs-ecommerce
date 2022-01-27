@@ -60,5 +60,38 @@ userRouter.post(
   })
 );
 
+// (3) "ROUTA 3" -- "POST(/REGISTER":
+userRouter.post(
+  "/register",
+  expressAsyncHandler(async (req, res) => {
+    // SENDING "REQUEST" TO "DB" → TO "CREATE USER": "EMAIL" & "PASSWORD":
+    const user = new User({
+      name: req.body.name,
+      email: req.body.email,
+      password: req.body.password,
+    });
+
+    // SAVING THE "CREATED USER":
+    const createdUser = await user.save();
+
+    // CHECKING: IF THE "CREATED USER" DOES NOT EXIST:
+    if (!createdUser) {
+      // ERROR MESSAGE "401":
+      res.status(401).send({
+        message: "Invalid User Data",
+      });
+    } else {
+      // SENDING "RESPONSE" TO THE "FRONTEND":
+      res.send({
+        _id: createdUser._id,
+        name: createdUser.name,
+        email: createdUser.email,
+        isAdmin: createdUser.isAdmin,
+        token: generateToken(createdUser),
+      });
+    }
+  })
+);
+
 // EXPORT:
 export default userRouter;
