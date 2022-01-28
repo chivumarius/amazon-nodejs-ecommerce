@@ -6,6 +6,7 @@ import bodyParser from "body-parser";
 import data from "./data";
 import config from "./config";
 import userRouter from "./routers/userRouter";
+import orderRouter from "./routers/orderRouter";
 
 // CONEXION  TO MONGOOSE:
 mongoose
@@ -31,6 +32,9 @@ app.use(bodyParser.json());
 
 // USE OF "USER ROUTER":
 app.use("/api/users", userRouter);
+
+// USE OF "ORDER ROUTER":
+app.use("/api/orders", orderRouter);
 
 // ROUTE 1 -- "GET(/API/PRODUCTS)":
 app.get("/api/products", (req, res) => {

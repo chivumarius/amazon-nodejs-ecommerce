@@ -135,3 +135,35 @@ export const update = async ({ name, email, password }) => {
     return { error: err.response.data.message || err.message };
   }
 };
+
+// EXPORTED ASYNC FUNCTION "CREATE ORDER":
+export const createOrder = async (order) => {
+  try {
+    // GETTIG THE "TOKEN":
+    const { token } = getUserInfo();
+
+    // SENDING "AXIOS" REQUEST:
+    const response = await axios({
+      url: `${apiUrl}/api/orders`,
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+
+      data: order,
+    });
+
+    // IF "STATUS TEXT" ISN'T "CREATED":
+    if (response.statusText !== "Created") {
+      // ERROR MESSAGE:
+      throw new Error(response.data.message);
+    }
+
+    //
+    return response.data;
+  } catch (err) {
+    // ERROR MESSAGE:
+    return { error: err.response ? err.response.data.message : err.message };
+  }
+};

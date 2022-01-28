@@ -1,6 +1,13 @@
 // OMPORTS:
-import { getCartItems, getShipping, getPayment } from "../localStorage";
+import {
+  getCartItems,
+  getShipping,
+  getPayment,
+  cleanCart,
+} from "../localStorage";
 import CheckoutSteps from "../components/CheckoutSteps";
+import { showLoading, hideLoading, showMessage } from "../utils";
+import { createOrder } from "../api";
 
 // FUNCTION "CONVERT CART TO ORDER":
 const convertCartToOrder = () => {
@@ -50,8 +57,36 @@ const convertCartToOrder = () => {
 
 // OBJECT "PLACE ORDER SCREEN":
 const PlaceOrderScreen = {
-  // METH. "AFTER_RENDER":
-  after_render: () => {},
+  // ASYNC METH. "AFTER_RENDER":
+  after_render: async () => {
+    document
+      .getElementById("placeorder-button")
+      .addEventListener("click", async () => {
+        // GETTING "ORDER"  FROM "CONVERT CART TO ORDER" FUNCTION:
+        const order = convertCartToOrder();
+
+        // CALLING "SHOW LOADING" FUNCTION:
+        showLoading();
+
+        // SENDING "AJAX" REQUEST → TO "CREATE ORDER":
+        const data = await createOrder(order);
+
+        // CALLING "HIDE LOADING" FUNCTION:
+        hideLoading();
+
+        // IF THERE US AN "ERROR":
+        if (data.error) {
+          // SHOW ERROR MESSAGE:
+          showMessage(data.error);
+        } else {
+          // CALLING "CLEAN CART()" FUNCTION::
+          cleanCart();
+
+          // REDIRECT "USER" → TO "ORDER._ID":
+          document.location.hash = `/order/${data.order._id}`;
+        }
+      });
+  },
 
   // METH. "RENDER":
   render: () => {
@@ -145,8 +180,9 @@ const PlaceOrderScreen = {
                   <li><div>Tax</div><div>$${taxPrice}</div></li>
                   <li class="total"><div>Order Total</div><div>$${totalPrice}</div></li> 
                   <li>
-                  <button class="primary fw">
-                  Place Order
+                  
+                  <button id="placeorder-button" class="primary fw">
+                    Place Order
                   </button>
           </div>
         </div>
