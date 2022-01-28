@@ -257,6 +257,7 @@ STEPS:
     3. Call apis in the backend
 
 26. Checkout Wizard
+
     1. create CheckoutSteps.js
     2. create div elements for step 1 to 4
     3. create redirectUser() in utils.js
@@ -266,3 +267,7 @@ STEPS:
     7. copy shipping screen and as payment screen
     8. define getPayment and setPayment
     9. redirect user to PlaceOrder.js
+
+27. PlaceOrder Screen UI
+    1. create PlaceOrder.js
+    2. style elements

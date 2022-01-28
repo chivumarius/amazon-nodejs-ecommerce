@@ -496,3 +496,76 @@ _________________________________________________________ */
   color: #f08000;
   border-top-color: #f08000;
 }
+
+/* ______________________________________________________ 
+  
+    SEC. "ORDER"
+_________________________________________________________ */
+
+/* CLS. ".ORDER" */
+.order {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 1rem;
+  justify-content: space-between;
+}
+
+/* "H2" → FROM CLS. ".ORDER" */
+.order h2 {
+  margin: 0;
+  padding-bottom: 1rem;
+  font-size: 2rem;
+}
+
+/* CLS. "CART-LIST-CONTAINER" → FROM CLS. ".ORDER" */
+.order .cart-list-container {
+  padding: 0;
+}
+
+/* CLS. ".ORDER-INFO" */
+.order-info {
+  flex: 3 1 60rem;
+}
+
+/* DIRECT "DIV" → FROM CLS. ".ORDER-INFO" */
+.order-info > div {
+  border: 0.1rem #c0c0c0 solid;
+  border-radius: 0.5rem;
+  background-color: #fcfcfc;
+  padding: 1rem;
+  margin: 1rem;
+}
+
+/* ":FIRST-CHILD" → FROM DIRECT "DIV" → FROM CLS. ".ORDER-INFO" */
+.order-info > div:first-child {
+  margin-top: 0;
+}
+
+/* CLS. "ORDER-ACTION" */
+.order-action {
+  flex: 1 1 20rem;
+  border: 0.1rem #c0c0c0 solid;
+  border-radius: 0.5rem;
+  background-color: #fcfcfc;
+  padding: 1rem;
+}
+
+/* DIRECT "UL" → FROM CLS. "ORDER-ACTION" */
+.order-action > ul {
+  padding: 0;
+  list-style-type: none;
+}
+
+/* "LI" → FROM CLS. "ORDER-ACTION" */
+.order-action li {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+/* CLS. ".TOTAL" → FROM CLS. "ORDER-ACTION" */
+.order-action .total {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #c04000;
+}

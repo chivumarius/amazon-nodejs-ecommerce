@@ -10,6 +10,7 @@ import RegisterScreen from "./srceens/RegisterScreen";
 import ProfileScreen from "./srceens/ProfileScreen";
 import ShippingScreen from "./srceens/ShippingScreen";
 import PaymentScreen from "./srceens/PaymentScreen";
+import PlaceOrderScreen from "./srceens/PlaceOrderScreen";
 
 // OBJECT "ROUTES" FUNC.:
 const routes = {
@@ -22,6 +23,7 @@ const routes = {
   "/profile": ProfileScreen,
   "/shipping": ShippingScreen,
   "/payment": PaymentScreen,
+  "/placeorder": PlaceOrderScreen,
 };
 
 // ASYNC FUNC. "ROUTER" :
