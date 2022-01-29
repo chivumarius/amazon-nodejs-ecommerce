@@ -11,11 +11,13 @@ import ProfileScreen from "./srceens/ProfileScreen";
 import ShippingScreen from "./srceens/ShippingScreen";
 import PaymentScreen from "./srceens/PaymentScreen";
 import PlaceOrderScreen from "./srceens/PlaceOrderScreen";
+import OrderScreen from "./srceens/OrderScreen";
 
 // OBJECT "ROUTES" FUNC.:
 const routes = {
   "/": HomeScreen,
   "/product/:id": ProductScreen,
+  "/order/:id": OrderScreen,
   "/cart/:id": CartScreen,
   "/cart": CartScreen,
   "/signin": SigninScreen,

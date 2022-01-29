@@ -160,10 +160,39 @@ export const createOrder = async (order) => {
       throw new Error(response.data.message);
     }
 
-    //
+    // OTHERWISE WE WILL RETURN THE DATA
     return response.data;
   } catch (err) {
     // ERROR MESSAGE:
     return { error: err.response ? err.response.data.message : err.message };
+  }
+};
+
+// EXPORTED ASYNC FUNCTION "GET ORDER":
+export const getOrder = async (id) => {
+  try {
+    // GETTIG THE "TOKEN":
+    const { token } = getUserInfo();
+
+    // SENDING "AXIOS" REQUEST:
+    const response = await axios({
+      url: `${apiUrl}/api/orders/${id}`,
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    // IF "STATUS TEXT" ISN'T "CREATED":
+    if (response.statusText !== "OK") {
+      // ERROR MESSAGE:
+      throw new Error(response.data.message);
+    }
+
+    // OTHERWISE WE WILL RETURN THE DATA:
+    return response.data;
+  } catch (err) {
+    // ERROR MESSAGE:
+    return { error: err.message };
   }
 };
