@@ -569,3 +569,48 @@ _________________________________________________________ */
   font-weight: bold;
   color: #c04000;
 }
+
+/* ______________________________________________________ 
+  
+    SEC. "PROFILE"
+_________________________________________________________ */
+/* CLASS "PROFILE" */
+.profile {
+  display: flex;
+  /* "WRAP" → TO BE "RESPONSIVE" */
+  flex-wrap: wrap;
+
+  /* VERTICAL ALIGNMENT → AT THE "TOP" */
+  align-items: flex-start;
+}
+
+/* CLASS "PROFILE-INFO" */
+.profile-info {
+  flex: 1 1 20rem;
+}
+
+/* CLASS "PROFILE-ORDERS" */
+.profile-orders {
+  flex: 3 1 60rem;
+  margin-left: 1rem;
+}
+
+/* "TABLE" */
+table {
+  width: 100%;
+}
+
+/* "TH" */
+th {
+  text-align: left;
+}
+
+/* DIRECT "TR:NTH-CHILD(ODD)" → FROM "TBODY" */
+tbody > tr:nth-child(odd) {
+  background-color: #f0f0f0;
+}
+
+/* "TD" */
+td {
+  padding: 0.5rem;
+}

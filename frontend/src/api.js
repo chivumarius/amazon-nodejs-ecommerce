@@ -155,7 +155,7 @@ export const createOrder = async (order) => {
 
     // IF "STATUS TEXT" ISN'T "CREATED":
     if (response.statusText !== "Created") {
-      // ERROR MESSAGE:
+      // IF "STATUS TEXT" ISN'T "CREATED":
       throw new Error(response.data.message);
     }
 
@@ -193,6 +193,35 @@ export const getOrder = async (id) => {
   } catch (err) {
     // ERROR MESSAGE:
     return { error: err.message };
+  }
+};
+
+// EXPORTED ASYNC FUNCTION "GET MY ORDER":
+export const getMyOrders = async () => {
+  try {
+    // GETTIG THE "USER TOKEN":
+    const { token } = getUserInfo();
+
+    // SENDING "AXIOS" REQUEST:
+    const response = await axios({
+      url: `${apiUrl}/api/orders/mine`,
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    // IF "STATUS TEXT" ISN'T "CREATED":
+    if (response.statusText !== "OK") {
+      // IF "STATUS TEXT" ISN'T "CREATED":
+      throw new Error(response.data.message);
+    }
+
+    // OTHERWISE WE WILL RETURN THE DATA
+    return response.data;
+  } catch (err) {
+    // ERROR MESSAGE:
+    return { error: err.response ? err.response.data.message : err.message };
   }
 };
 

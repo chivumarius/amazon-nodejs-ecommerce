@@ -7,6 +7,19 @@ import Order from "../models/orderModel";
 // "ORDER ROUTER" INSTANCE:
 const orderRouter = express.Router();
 
+// ORDER ROUTE "GET('/MINE')" → FOR "ORDER HISTORY":
+orderRouter.get(
+  "/mine",
+  isAuth,
+  expressAsyncHandler(async (req, res) => {
+    // GETTING USER ID:
+    const orders = await Order.find({ user: req.user._id });
+
+    // RETURN "ORDER":
+    res.send(orders);
+  })
+);
+
 // THE "ROUTE" → FOR GETTING "ORDER" FOR AN "USER ID":
 orderRouter.get(
   "/:id",
