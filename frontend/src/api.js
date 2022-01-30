@@ -1,4 +1,3 @@
-/* eslint-disable import/prefer-default-export */
 // IMPORTS:
 import axios from "axios";
 import { apiUrl } from "./config";
@@ -194,5 +193,55 @@ export const getOrder = async (id) => {
   } catch (err) {
     // ERROR MESSAGE:
     return { error: err.message };
+  }
+};
+
+// EXPORTED ASYNC FUNCTION "GET PAYPAL CLIENT ID":
+export const getPaypalClientId = async () => {
+  // SENDING "AXIOS" REQUEST:
+  const response = await axios({
+    url: `${apiUrl}/api/paypal/clientId`,
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  // IF "STATUS TEXT" ISN'T "CREATED":
+  if (response.statusText !== "OK") {
+    // ERROR MESSAGE:
+    throw new Error(response.data.message);
+  }
+
+  // OTHERWISE WE WILL RETURN THE "DATA CLIENT ID":
+  return response.data.clientId;
+};
+
+// EXPORTED ASYNC FUNCTION "PAYPAL ORDER":
+export const payOrder = async (orderId, paymentResult) => {
+  try {
+    // GETTIG THE "USER TOKEN":
+    const { token } = getUserInfo();
+
+    // SENDING "AXIOS" REQUEST:
+    const response = await axios({
+      url: `${apiUrl}/api/orders/${orderId}/pay`,
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      data: paymentResult,
+    });
+
+    // IF "STATUS TEXT" ISN'T "CREATED":
+    if (response.statusText !== "OK") {
+      // ERROR MESSAGE:
+      throw new Error(response.data.message);
+    }
+    // OTHERWISE WE WILL RETURN THE "DATA":
+    return response.data;
+  } catch (err) {
+    // ERROR MESSAGE:
+    return { error: err.response ? err.response.data.message : err.message };
   }
 };

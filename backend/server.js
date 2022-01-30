@@ -36,6 +36,11 @@ app.use("/api/users", userRouter);
 // USE OF "ORDER ROUTER":
 app.use("/api/orders", orderRouter);
 
+// USE OF "PAYPAL/ 'CLIENT ID' ROUTER":
+app.get("/api/paypal/clientId", (req, res) => {
+  res.send({ clientId: config.PAYPAL_CLIENT_ID });
+});
+
 // ROUTE 1 -- "GET(/API/PRODUCTS)":
 app.get("/api/products", (req, res) => {
   res.send(data.products);
@@ -57,10 +62,7 @@ app.get("/api/products/:id", (req, res) => {
 
 // HAMDELLER  ALL  "ERROR" → IN "EXPRESS  INSTANCE":
 app.use((err, req, res, next) => {
-  // CHECKING ERROR "STATUS":
   const status = err.name && err.name === "ValidationError" ? 400 : 500;
-
-  // ERROR MESSAGE:
   res.status(status).send({ message: err.message });
 });
 

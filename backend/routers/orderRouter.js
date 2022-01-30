@@ -51,5 +51,38 @@ orderRouter.post(
   })
 );
 
+// THE "ROUTE" → FOR UPDATING "ID/ PAY":
+orderRouter.put(
+  "/:id/pay",
+  isAuth,
+  expressAsyncHandler(async (req, res) => {
+    // GETTING "INFORMATION" ABOUT THIS "ORDER"
+    const order = await Order.findById(req.params.id);
+
+    // CHECKING "IF THE ORDER EXIST":
+    if (order) {
+      // SETTINGS:
+      order.isPaid = true;
+      order.paidAt = Date.now();
+
+      // FILLING THE "PAYMENT RESULT":
+      order.payment.paymentResult = {
+        payerID: req.body.payerID,
+        paymentID: req.body.paymentID,
+        orderID: req.body.orderID,
+      };
+
+      // SAVEING "UPDATED ORDER":
+      const updatedOrder = await order.save();
+
+      // SENDING MESSAGE OF CONFIRMATION:
+      res.send({ message: "Order Paid", order: updatedOrder });
+    } else {
+      // ERROR MESSAGE "404":
+      res.status(404).send({ message: "Order Not Found." });
+    }
+  })
+);
+
 // EXPORT:
 export default orderRouter;
