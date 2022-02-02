@@ -60,5 +60,45 @@ productRouter.post(
   })
 );
 
+// PRODUCT ROUTER - "PUT('/:ID')"
+productRouter.put(
+  "/:id",
+  isAuth,
+  isAdmin,
+  expressAysncHandler(async (req, res) => {
+    // GETTING "PRODUCT ID":
+    const productId = req.params.id;
+
+    // FINDING "PRODUCT" → BY "ID":
+    const product = await Product.findById(productId);
+
+    // IF THERE IS A "PRODUCT" → UPDATE" IT:
+    if (product) {
+      product.name = req.body.name;
+      product.price = req.body.price;
+      product.image = req.body.image;
+      product.brand = req.body.brand;
+      product.category = req.body.category;
+      product.countInStock = req.body.countInStock;
+      product.description = req.body.description;
+
+      // SAVING "UPDATED PRODUCT":
+      const updatedProduct = await product.save();
+
+      // CHECKING IF THE "PRODUCT" IS "UPDATED":
+      if (updatedProduct) {
+        // SUCCESS MESSAGE:
+        res.send({ message: "Product Updated", product: updatedProduct });
+      } else {
+        // ERROR MESSAGE "500":
+        res.status(500).send({ message: "Error in updaing product" });
+      }
+    } else {
+      // ERROR MESAGE "404":
+      res.status(404).send({ message: "Product Not Found" });
+    }
+  })
+);
+
 // EXPORT:
 export default productRouter;

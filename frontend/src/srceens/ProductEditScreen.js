@@ -1,11 +1,55 @@
 // IMPORTS:
-import { parseRequestUrl } from "../utils";
-import { getProduct } from "../api";
+import {
+  parseRequestUrl,
+  showLoading,
+  showMessage,
+  hideLoading,
+} from "../utils";
+import { getProduct, updateProduct } from "../api";
 
 // OBJECT "PRODUCT EDIT SCREEN":
 const ProductEditScreen = {
   // METHOD "AFTER_RENDER":
-  after_render: () => {},
+  after_render: () => {
+    // DEFINE "REQUEST":
+    const request = parseRequestUrl();
+
+    // GETTING "EDIT-PRODUCT-FORM" ID:
+    document
+      .getElementById("edit-product-form")
+      .addEventListener("submit", async (e) => {
+        // WHEN "USER" → CLIC BTN. "UPDATE"
+        // THE "FORM" WILL NOT BE "POSTED" BACK → TO THE "SERVER":
+        e.preventDefault();
+
+        // CALLING "SHOW LOADING":
+        showLoading();
+
+        // CALLING "UPDATE PRODUCT()":
+        const data = await updateProduct({
+          _id: request.id,
+          name: document.getElementById("name").value,
+          price: document.getElementById("price").value,
+          image: document.getElementById("image").value,
+          brand: document.getElementById("brand").value,
+          category: document.getElementById("category").value,
+          countInStock: document.getElementById("countInStock").value,
+          description: document.getElementById("description").value,
+        });
+
+        // CALLING "HIDE LOADING":
+        hideLoading();
+
+        // CHECKING IF THERE IS AN "ERROR" IN "DATA":
+        if (data.error) {
+          // ERROR MESSAGE:
+          showMessage(data.error);
+        } else {
+          // OTHERWISE REDIRECT "USER" → TO "PRODUCT LIST" PAGE:
+          document.location.hash = "/productlist";
+        }
+      });
+  },
 
   // ASYNC METHOD "RENDER":
   render: async () => {
