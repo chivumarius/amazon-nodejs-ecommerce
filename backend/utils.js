@@ -46,3 +46,16 @@ export const isAuth = (req, res, next) => {
     });
   }
 };
+
+// EXP. FUNC. "IS ADMIN" ("MIDDLEWARE")
+// (THE "MIDDLEWARE" → WILL "STOP" → BY CALLING "NEXT"):
+export const isAdmin = (req, res, next) => {
+  // CHECKING IF THERE IS "REQ.USER" & "REQ.USER.ADMIN"
+  if (req.user && req.user.isAdmin) {
+    // GO → TO THE "NEXT" HANDLER:
+    next();
+  } else {
+    // OTHERWISE → ERROR MESSAGE "401":
+    res.status(401).send({ message: "Token is not valid for admin user" });
+  }
+};

@@ -7,6 +7,7 @@ import data from "./data";
 import config from "./config";
 import userRouter from "./routers/userRouter";
 import orderRouter from "./routers/orderRouter";
+import productRouter from "./routers/productRouter";
 
 // CONEXION  TO MONGOOSE:
 mongoose
@@ -32,6 +33,9 @@ app.use(bodyParser.json());
 
 // USE OF "USER ROUTER":
 app.use("/api/users", userRouter);
+
+// USE OF "PRODUCTS ROUTER":
+app.use("/api/products", productRouter);
 
 // USE OF "ORDER ROUTER":
 app.use("/api/orders", orderRouter);

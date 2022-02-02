@@ -1,11 +1,22 @@
 // IMPORTS:
 import DashboardMenu from "../components/DashboardMenu";
-import { getProducts } from "../api";
+import { getProducts, createProduct } from "../api";
 
 // OBJECT "PRODUCT LIST SCREEN":
 const ProductListScreen = {
   // METHOD "AFTER_RENDER()":
-  after_render: () => {},
+  after_render: () => {
+    // GETTING ID "CREATE-PRODUCT-BUTTON"
+    // & ADDING "CLICK LISTENER EVEBT":
+    document
+      .getElementById("create-product-button")
+      .addEventListener("click", async () => {
+        // CREATING PRODUCTl
+        const data = await createProduct();
+        // REDIRECT USER → TO THE "PRODUCT DETAILS":
+        document.location.hash = `/product/${data.product._id}/edit`;
+      });
+  },
 
   // ASYNC METHOD "RENDER()":
   render: async () => {

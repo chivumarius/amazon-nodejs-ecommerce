@@ -56,6 +56,35 @@ export const getProduct = async (id) => {
   }
 };
 
+// EXPORTED ASYNC FUNCTION "CREATE PRODUCT":
+export const createProduct = async () => {
+  try {
+    // HETTING THE "USER ADMIN TOKEN"
+    const { token } = getUserInfo();
+
+    // CREATING "AJAX REQUEST" BY "AXIOS()":
+    const response = await axios({
+      url: `${apiUrl}/api/products`,
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    // CHECKING IF THERE WAS "CREATED":
+    if (response.statusText !== "Created") {
+      throw new Error(response.data.message);
+    }
+
+    // OTHERWISE RETURN "DATA":
+    return response.data;
+  } catch (err) {
+    // ERROR MESSAGE:
+    return { error: err.response.data.message || err.message };
+  }
+};
+
 // EXPORTED ASYNC FUNCTION "SIGN IN":
 export const signin = async ({ email, password }) => {
   // "TRY .. CATCH" BLOCKS:
