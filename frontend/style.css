@@ -169,8 +169,8 @@ header {
 /* "A" → "HEADER" */
 header a {
   color: #ffffff;
-  font-weight: bold;
   text-decoration: none;
+  padding-right: 1rem;
 }
 
 /* HOVER "A" → "HEADER" */
@@ -180,7 +180,9 @@ header a:hover {
 
 /* "A" → CLS. "BRAND" */
 .brand a {
+  font-weight: bold;
   font-size: 3rem;
+  padding-left: 1rem;
 }
 
 /* FOOTER  */
@@ -613,4 +615,60 @@ tbody > tr:nth-child(odd) {
 /* "TD" */
 td {
   padding: 0.5rem;
+}
+
+/* ______________________________________________________ 
+  
+    SEC. "DASHBOARD"
+_________________________________________________________ */
+
+/* CLS. "DASHBOARD" */
+.dashboard {
+  /* PLACEING ITEMS → EACHOTHER */
+  display: flex;
+  /* MAKE IT "RESPONSIVE" */
+  flex-wrap: wrap;
+
+  height: 100%;
+}
+
+/* "H1"  → FROM CLS. "DASHBOARD" */
+.dashboard h1 {
+  font-size: 3rem;
+  margin: 1rem 0;
+}
+
+/* CLS. "DASHBOARD-MENU" */
+.dashboard-menu {
+  flex: 1 1 20rem;
+  background-color: #f0f0f0;
+}
+
+/* "UL" → FROM CLS. "DASHBOARD-MENU" */
+.dashboard-menu ul {
+  padding: 0;
+}
+
+/* "A" → FROM CLS. "DASHBOARD-MENU" */
+.dashboard-menu a {
+  display: flex;
+  padding: 1rem;
+  padding-left: 2rem;
+  justify-content: space-between;
+}
+
+/* "A:HOVER" → FROM CLS. "DASHBOARD-MENU" */
+.dashboard-menu a:hover {
+  background-color: #c0c0c0;
+}
+
+/* "A" FROM "LI.SELECTED" → FROM CLS. "DASHBOARD-MENU" */
+.dashboard-menu li.selected a {
+  background-color: #c0c0c0;
+  color: #f08040;
+}
+/* CLS. "DASHBOARD-CONTENT" */
+.dashboard-content {
+  flex: 4 1 80rem;
+  padding: 1rem;
 }

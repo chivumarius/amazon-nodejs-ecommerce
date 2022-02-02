@@ -6,7 +6,7 @@ const Header = {
   // FUNC. ""RENDER:
   render: () => {
     // DESTRUCTURING OF "NAME" PROPERTY:
-    const { name } = getUserInfo();
+    const { name, isAdmin } = getUserInfo();
 
     // TEMPLATE LITERALS:
     return ` 
@@ -27,6 +27,16 @@ const Header = {
       
         <!-- LINK "CART PAGE"  -->
         <a href="/#/cart">Cart</a>
+
+        <!-- HECKING → IF "USER IS ADMIN": -->
+        ${
+          isAdmin
+            ? // SHOWING LINK TO "DASHBOARD"
+              `<a href="/#/dashboard">Dashboard</a>`
+            : // WHEN USER ISN'T ADMIN":
+              ""
+        }            
+          
       </div>
     `;
   },

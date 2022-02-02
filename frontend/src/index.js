@@ -12,6 +12,7 @@ import ShippingScreen from "./srceens/ShippingScreen";
 import PaymentScreen from "./srceens/PaymentScreen";
 import PlaceOrderScreen from "./srceens/PlaceOrderScreen";
 import OrderScreen from "./srceens/OrderScreen";
+import DashboardScreen from "./srceens/DashboardScreen";
 
 // OBJECT "ROUTES" FUNC.:
 const routes = {
@@ -26,6 +27,7 @@ const routes = {
   "/shipping": ShippingScreen,
   "/payment": PaymentScreen,
   "/placeorder": PlaceOrderScreen,
+  "/dashboard": DashboardScreen,
 };
 
 // ASYNC FUNC. "ROUTER" :
