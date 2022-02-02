@@ -3,6 +3,32 @@ import axios from "axios";
 import { apiUrl } from "./config";
 import { getUserInfo } from "./localStorage";
 
+// EXPORTED ASYNC FUNCTION "GET PRODUCTS":
+export const getProducts = async () => {
+  try {
+    // SENDING "AJAX REQUEST" BY "AXIOS()":
+    const response = await axios({
+      url: `${apiUrl}/api/products`,
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    // RESPONSE  EVALUATION:
+    if (response.statusText !== "OK") {
+      throw new Error(response.data.message);
+    }
+
+    // RETURN (FOR SUCCESS CASE):
+    return response.data;
+  } catch (err) {
+    // IN CASE OF ERROR:
+    console.log(err);
+    return { error: err.response.data.message || err.message };
+  }
+};
+
 // EXPORTED ASYNC FUNCTION "GET PRODUCT":
 export const getProduct = async (id) => {
   // "TRY .. CATCH" BLOCKS:

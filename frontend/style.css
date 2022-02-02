@@ -576,6 +576,7 @@ _________________________________________________________ */
   
     SEC. "PROFILE"
 _________________________________________________________ */
+
 /* CLASS "PROFILE" */
 .profile {
   display: flex;
@@ -671,4 +672,16 @@ _________________________________________________________ */
 .dashboard-content {
   flex: 4 1 80rem;
   padding: 1rem;
+}
+
+/* "PRODUCT LIST SCREEN" → FROM "DASHBOARD" */
+/* "BUTTON" → FROM CLS. "PRODUCT-LIST" */
+.product-list button {
+  font-size: 1.3rem;
+  padding: 0.5rem;
+}
+
+/* CLS "TR-ACTIVE" */
+.tr-action {
+  width: 10rem;
 }

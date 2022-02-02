@@ -307,8 +307,14 @@ STEPS:
     4. style orders
 
 32. Admin Dashboard UI
+
     1. Header.js
     2. if user is admin show Dashboard
     3. create DashboardScreen
     4. create DashboardMenu
     5. Style dashboard
+
+33. Admin Products
+    1. create ProductListScreen.js
+    2. show products with edit and delete button
+    3. show create product button

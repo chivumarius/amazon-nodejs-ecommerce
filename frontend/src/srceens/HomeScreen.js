@@ -1,37 +1,20 @@
 /* eslint-disable linebreak-style */
 // IMPORT:
-import axios from "axios";
 import Rating from "../components/Rating";
-import { hideLoading, showLoading } from "../utils";
+import { getProducts } from "../api";
 
 // OBJECT
 const HomeScreen = {
   // ASYNC FUNC."RENDER()":
   render: async () => {
-    // FUNCTION CALLING:
-    showLoading();
+    // GET PRODUCTS:
+    const products = await getProducts();
 
-    // METHOD"AXIOS()" → GET "DATA.JS" FROM "BACKEND" → BY SENDING "AJAX REQUEST" TO "SERVER":
-    const response = await axios({
-      url: "http://localhost:5000/api/products",
-
-      headers: {
-        "Content-Type": "application/json",
-      },
-      // eslint-disable-next-line linebreak-style
-    });
-
-    // FUNCTION CALLING:
-    hideLoading();
-
-    // CHECKING "RESPONSE":
-    if (!response || response.statusText !== "OK") {
+    // CHECKING IF THERE IS A "PRODUCT.ERROR":
+    if (products.error) {
       // RETURN AN ERROR:
-      return "<div>Error in getting data</div>";
+      return `<div class="error">${products.error}</div>`;
     }
-
-    // OBJ. "DATA":
-    const products = response.data;
 
     // RETURN → "TEMPLATE LITERALS":
     return `
