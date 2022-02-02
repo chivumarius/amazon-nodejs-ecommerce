@@ -7,6 +7,28 @@ import Product from "../models/productModel";
 // DEFINE "PRODUCT" ROUTER → FROM "EXPRESS":
 const productRouter = express.Router();
 
+// PRODUCT ROUTER - "GET('/')"
+productRouter.get(
+  "/",
+  expressAysncHandler(async (req, res) => {
+    // FINDING "PRODUCT":
+    const products = await Product.find({});
+    // SENDING THOSE "PRODUCTS":
+    res.send(products);
+  })
+);
+
+// PRODUCT ROUTER - "GET('/:ID')"
+productRouter.get(
+  "/:id",
+  expressAysncHandler(async (req, res) => {
+    // FINDING "PRODUCT" → BY "ID":
+    const product = await Product.findById(req.params.id);
+    // SENDING THISE "PRODUCT":
+    res.send(product);
+  })
+);
+
 // PRODUCT ROUTER - "POST('/')"
 productRouter.post(
   "/",

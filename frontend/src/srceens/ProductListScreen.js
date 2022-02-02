@@ -16,6 +16,18 @@ const ProductListScreen = {
         // REDIRECT USER → TO THE "PRODUCT DETAILS":
         document.location.hash = `/product/${data.product._id}/edit`;
       });
+
+    // GETTING ACCESS → TO "EDIT" BUTTONS:
+    const editButtons = document.getElementsByClassName("edit-button");
+
+    // CONVERTING "EDIT BUTTONS" → TO "ARRAY":
+    Array.from(editButtons).forEach((editButton) => {
+      // ADDING "CLIC" EVENT LISTENER:
+      editButton.addEventListener("click", () => {
+        // REDIRECTING "USER" → TO "EDIT" PAGE → FOR THAT "PRODUCT":
+        document.location.hash = `/product/${editButton.id}/edit`;
+      });
+    });
   },
 
   // ASYNC METHOD "RENDER()":

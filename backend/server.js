@@ -3,7 +3,6 @@ import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
 import bodyParser from "body-parser";
-import data from "./data";
 import config from "./config";
 import userRouter from "./routers/userRouter";
 import orderRouter from "./routers/orderRouter";
@@ -43,25 +42,6 @@ app.use("/api/orders", orderRouter);
 // USE OF "PAYPAL/ 'CLIENT ID' ROUTER":
 app.get("/api/paypal/clientId", (req, res) => {
   res.send({ clientId: config.PAYPAL_CLIENT_ID });
-});
-
-// ROUTE 1 -- "GET(/API/PRODUCTS)":
-app.get("/api/products", (req, res) => {
-  res.send(data.products);
-});
-
-// ROUTE 2 -- "GET(/API/PRODUCTS/:ID)":
-app.get("/api/products/:id", (req, res) => {
-  // METHOD ".FIND()":
-  const product = data.products.find((x) => x._id === req.params.id);
-
-  // IF "PRODUCT EXISTE" → OR "NOT":
-  if (product) {
-    res.send(product);
-  } else {
-    // MESSAGE ERROR: "404":
-    res.status(404).send({ message: "Product Not Found!" });
-  }
 });
 
 // HAMDELLER  ALL  "ERROR" → IN "EXPRESS  INSTANCE":

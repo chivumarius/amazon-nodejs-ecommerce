@@ -14,10 +14,12 @@ import PlaceOrderScreen from "./srceens/PlaceOrderScreen";
 import OrderScreen from "./srceens/OrderScreen";
 import DashboardScreen from "./srceens/DashboardScreen";
 import ProductListScreen from "./srceens/ProductListScreen";
+import ProductEditScreen from "./srceens/ProductEditScreen";
 
 // OBJECT "ROUTES" FUNC.:
 const routes = {
   "/": HomeScreen,
+  "/product/:id/edit": ProductEditScreen,
   "/product/:id": ProductScreen,
   "/order/:id": OrderScreen,
   "/cart/:id": CartScreen,
