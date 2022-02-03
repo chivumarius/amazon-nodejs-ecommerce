@@ -362,6 +362,7 @@ STEPS:
     3. save product in backend
 
 37. Upload Product Image
+
     1. npm install multer
     2. create routes/uploadRoute.js
     3. import express and multer
@@ -378,3 +379,11 @@ STEPS:
     14. call uploadProductImage()
     15. create uploadProductImage in api.js
     16. update server.js
+
+38. Build Project
+    1. create build script for frontend
+    2. create build script for backend
+    3. update sever.js to serve frontend build folder and uploads folder
+    4. stop running frontend
+    5. npm run build
+    6. check localhost:5000 for running website and showing images
