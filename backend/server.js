@@ -7,6 +7,7 @@ import config from "./config";
 import userRouter from "./routers/userRouter";
 import orderRouter from "./routers/orderRouter";
 import productRouter from "./routers/productRouter";
+import uploadRouter from "./routers/uploadRouter";
 
 // CONEXION  TO MONGOOSE:
 mongoose
@@ -29,6 +30,9 @@ app.use(cors());
 
 // USE "DATA" IN FORMATUL "JSON" BY PACKAGE "BODY PARSER":
 app.use(bodyParser.json());
+
+// USE OF "USER UPLOADS":
+app.use("/api/uploads", uploadRouter);
 
 // USE OF "USER ROUTER":
 app.use("/api/users", userRouter);

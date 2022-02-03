@@ -5,7 +5,7 @@ import {
   showMessage,
   hideLoading,
 } from "../utils";
-import { getProduct, updateProduct } from "../api";
+import { getProduct, updateProduct, uploadProductImage } from "../api";
 
 // OBJECT "PRODUCT EDIT SCREEN":
 const ProductEditScreen = {
@@ -14,6 +14,7 @@ const ProductEditScreen = {
     // DEFINE "REQUEST":
     const request = parseRequestUrl();
 
+    // (1) "SUBMIT  HANDLER"
     // GETTING "EDIT-PRODUCT-FORM" ID:
     document
       .getElementById("edit-product-form")
@@ -47,6 +48,44 @@ const ProductEditScreen = {
         } else {
           // OTHERWISE REDIRECT "USER" → TO "PRODUCT LIST" PAGE:
           document.location.hash = "/productlist";
+        }
+      });
+
+    // (2) "CHANGE  HANDLER"
+    // GETTING "IMAGE-FILE" ID:
+    document
+      .getElementById("image-file")
+      .addEventListener("change", async (e) => {
+        // GETTING "ACCESS" → TO THE "SELECTED FILE":
+        const file = e.target.files[0];
+
+        // DEFINING A NEW "FORM DATA()":
+        // FOR CREATING A "BODY" SECTION → FOR "AJAX REQUEST":
+        const formData = new FormData();
+
+        // ADDING/APPEND "IMAGE" → TO "FORM DATA":
+        formData.append("image", file);
+
+        // CALLING "SHOW LOADING":
+        showLoading();
+
+        // CALLING "AJAX REQUEST" → "UPLOAD PRODUCT IMAGE()":
+        const data = await uploadProductImage(formData);
+
+        // CALLING "HIDE LOADING":
+        hideLoading();
+
+        // CHECKING IF THERE IS AN "ERROR" IN "DATA":
+        if (data.error) {
+          // ERROR MESSAGE:
+          showMessage(data.error);
+        } else {
+          // SUCCESS MESSAGE:
+          showMessage("Image uploaded successfully.");
+
+          // SETTING "IMAGE TEXT FIELD" VALUE
+          // → TO THE "UPLOADED FILE PATH" VALUE:
+          document.getElementById("image").value = data.image;
         }
       });
   },
@@ -97,6 +136,8 @@ const ProductEditScreen = {
                 <input type="text" name="image" value="${
                   product.image
                 }" id="image" />
+
+                <input type="file" name="image-file" id="image-file" />
               </li>
 
               <!-- BRAND -->

@@ -115,6 +115,37 @@ export const updateProduct = async (product) => {
   }
 };
 
+// EXPORTED ASYNC FUNCTION "UPDATE PRODUCT":
+export const uploadProductImage = async (formData) => {
+  try {
+    // GETTING THE "USER ADMIN TOKEN"
+    const { token } = getUserInfo();
+
+    // CREATING "AJAX REQUEST" BY "AXIOS()":
+    const response = await axios({
+      url: `${apiUrl}/api/uploads`,
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "multipart/form-data",
+      },
+      data: formData,
+    });
+
+    // CHECKING IF THE "STATUS TEXT" → ISN'T "OK"::
+    if (response.statusText !== "Created") {
+      // ERROR MESSAGE:
+      throw new Error(response.data.message);
+    } else {
+      // RETURN "DATA":
+      return response.data;
+    }
+  } catch (err) {
+    // ERROR MESSAGE:
+    return { error: err.response.data.message || err.message };
+  }
+};
+
 // EXPORTED ASYNC FUNCTION "SIGN IN":
 export const signin = async ({ email, password }) => {
   // "TRY .. CATCH" BLOCKS:
