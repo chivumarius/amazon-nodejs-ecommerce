@@ -85,6 +85,35 @@ export const createProduct = async () => {
   }
 };
 
+// EXPORTED ASYNC FUNCTION "DELETE PRODUCT" → BY "PRODUCT ID":
+export const deleteProduct = async (productId) => {
+  try {
+    // GETTING THE "USER ADMIN TOKEN"
+    const { token } = getUserInfo();
+
+    // CREATING "AJAX REQUEST" BY "AXIOS()":
+    const response = await axios({
+      url: `${apiUrl}/api/products/${productId}`,
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    // CHECKING IF THE "STATUS TEXT" → ISN'T "OK"::
+    if (response.statusText !== "OK") {
+      // ERROR MESSAGE:
+      throw new Error(response.data.message);
+    }
+    // RETURN "DATA":
+    return response.data;
+  } catch (err) {
+    // ERROR MESSAGE:
+    return { error: err.response.data.message || err.message };
+  }
+};
+
 // EXPORTED ASYNC FUNCTION "UPDATE PRODUCT":
 export const updateProduct = async (product) => {
   try {

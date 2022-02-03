@@ -1,11 +1,16 @@
 // IMPORTS:
 import DashboardMenu from "../components/DashboardMenu";
-import { getProducts, createProduct } from "../api";
+import { getProducts, createProduct, deleteProduct } from "../api";
+import { showLoading, hideLoading, rerender, showMessage } from "../utils";
 
 // OBJECT "PRODUCT LIST SCREEN":
 const ProductListScreen = {
   // METHOD "AFTER_RENDER()":
   after_render: () => {
+    // -----------------------------------------------------------------
+    // (1) "CREATE PRODUCT BUTTON" HANDLER:
+    // -----------------------------------------------------------------
+
     // GETTING ID "CREATE-PRODUCT-BUTTON"
     // & ADDING "CLICK LISTENER EVEBT":
     document
@@ -13,9 +18,15 @@ const ProductListScreen = {
       .addEventListener("click", async () => {
         // CREATING PRODUCTl
         const data = await createProduct();
+
         // REDIRECT USER → TO THE "PRODUCT DETAILS":
         document.location.hash = `/product/${data.product._id}/edit`;
       });
+    // -----------------------------------------------------------------
+
+    // -----------------------------------------------------------------
+    // (2) "EDIT BUTTON" HANDLER:
+    // -----------------------------------------------------------------
 
     // GETTING ACCESS → TO "EDIT" BUTTONS:
     const editButtons = document.getElementsByClassName("edit-button");
@@ -26,6 +37,41 @@ const ProductListScreen = {
       editButton.addEventListener("click", () => {
         // REDIRECTING "USER" → TO "EDIT" PAGE → FOR THAT "PRODUCT":
         document.location.hash = `/product/${editButton.id}/edit`;
+      });
+    });
+    // -----------------------------------------------------------------
+
+    // -----------------------------------------------------------------
+    // (3) "DELETE BUTTON" HANDLER:
+    // -----------------------------------------------------------------
+
+    // GETTING ACCESS → TO "DELETE" BUTTONS:
+    const deleteButtons = document.getElementsByClassName("delete-button");
+
+    // CONVERTING "DELETE BUTTONS" → TO "ARRAY":
+    Array.from(deleteButtons).forEach((deleteButton) => {
+      // ADDING "CLIC" EVENT LISTENER:
+      deleteButton.addEventListener("click", async () => {
+        // GETTING "USER CONFIRMATION" → FOR "DELETING THE PRODUCT":
+        if (confirm("Are you sure to delete this product?")) {
+          // CALLING "SHOW LOADING" FUNCTION:
+          showLoading();
+
+          // DELETING THE PRODUCT BY ID
+          const data = await deleteProduct(deleteButton.id);
+
+          // CHECKING IF THERE IS AN "DATA ERROR"l
+          if (data.error) {
+            // CALLING "SHOW MESSAGE" FUNCTION:
+            showMessage(data.error);
+          } else {
+            // CALLING "RERENDER()" FUNCTION:
+            rerender(ProductListScreen);
+          }
+
+          // CALLING "HIDE LOADING" FUNCTION:
+          hideLoading();
+        }
       });
     });
   },

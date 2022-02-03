@@ -100,5 +100,28 @@ productRouter.put(
   })
 );
 
+// PRODUCT ROUTER - "DELETE('/:ID')"
+productRouter.delete(
+  "/:id",
+  isAuth,
+  isAdmin,
+  expressAysncHandler(async (req, res) => {
+    // FINDING "PRODUCT" → BY "ID":
+    const product = await Product.findById(req.params.id);
+
+    // CHECKING → IF "THERE IS" A "PRODUCT":
+    if (product) {
+      // REMOVING THE PRODUCT:
+      const deletedProduct = await product.remove();
+
+      // SUCCESS MESSAGE:
+      res.send({ message: "Product Deleted", product: deletedProduct });
+    } else {
+      // ERROR MESSAGE "404":
+      res.status(404).send({ message: "Product Not Found" });
+    }
+  })
+);
+
 // EXPORT:
 export default productRouter;
