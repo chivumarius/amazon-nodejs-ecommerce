@@ -1,11 +1,25 @@
 // IMPORTS:
 import express from "express";
 import expressAsyncHandler from "express-async-handler";
-import { isAuth } from "../utils";
+import { isAuth, isAdmin } from "../utils";
 import Order from "../models/orderModel";
 
 // "ORDER ROUTER" INSTANCE:
 const orderRouter = express.Router();
+
+// ORDER ROUTE "GET('/')" → FOR "ORDERS HISTORY":
+orderRouter.get(
+  "/",
+  isAuth,
+  isAdmin,
+  expressAsyncHandler(async (req, res) => {
+    // GETTING ALL "ORDERS"
+    const orders = await Order.find({}).populate("user");
+
+    // SENDING "ORDERS":
+    res.send(orders);
+  })
+);
 
 // ORDER ROUTE "GET('/MINE')" → FOR "ORDER HISTORY":
 orderRouter.get(
@@ -61,6 +75,29 @@ orderRouter.post(
 
     // SENDING SUCCESS MESSAGE "201":
     res.status(201).send({ message: "New Order Created", order: createdOrder });
+  })
+);
+
+// ORDER ROUTER - "DELETE('/:ID')"
+orderRouter.delete(
+  "/:id",
+  isAuth,
+  isAdmin,
+  expressAsyncHandler(async (req, res) => {
+    // FINDING "ORDER" → BY "ID":
+    const order = await Order.findById(req.params.id);
+
+    // CHECKING → IF "THERE IS" A "PRODUCT":
+    if (order) {
+      // REMOVING ORDER:
+      const deletedOrder = await order.remove();
+
+      // SUCCESS MESSAGE:
+      res.send({ message: "Order Deleted", product: deletedOrder });
+    } else {
+      // ERROR MESSAGE "404":
+      res.status(404).send({ message: "Order Not Found" });
+    }
   })
 );
 

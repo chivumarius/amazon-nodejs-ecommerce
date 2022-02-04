@@ -675,7 +675,8 @@ _________________________________________________________ */
 }
 
 /* "PRODUCT LIST SCREEN" → FROM "DASHBOARD" */
-/* "BUTTON" → FROM CLS. "PRODUCT-LIST" */
+/* "BUTTON" → FROM CLS. "PRODUCT-LIST" & "ORDER-LIST" */
+.order-list button,
 .product-list button {
   font-size: 1.3rem;
   padding: 0.5rem;

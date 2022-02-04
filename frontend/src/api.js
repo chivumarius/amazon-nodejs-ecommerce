@@ -312,6 +312,65 @@ export const createOrder = async (order) => {
   }
 };
 
+// EXPORTED ASYNC FUNCTION "GET ORDERS":
+export const getOrders = async () => {
+  try {
+    // GETTIG THE "TOKEN":
+    const { token } = getUserInfo();
+
+    // SENDING "AJAX REQUEST" BY "AXIOS()":
+    const response = await axios({
+      url: `${apiUrl}/api/orders`,
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    // RESPONSE  EVALUATION:
+    if (response.statusText !== "OK") {
+      throw new Error(response.data.message);
+    }
+
+    // RETURN (FOR SUCCESS CASE):
+    return response.data;
+  } catch (err) {
+    // IN CASE OF ERROR:
+    console.log(err);
+    return { error: err.response.data.message || err.message };
+  }
+};
+
+// EXPORTED ASYNC FUNCTION "DELETE ORDER" → BY "PRODUCT ID":
+export const deleteOrder = async (orderId) => {
+  try {
+    // GETTING THE "USER ADMIN TOKEN"
+    const { token } = getUserInfo();
+
+    // CREATING "AJAX REQUEST" BY "AXIOS()":
+    const response = await axios({
+      url: `${apiUrl}/api/orders/${orderId}`,
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    // CHECKING IF THE "STATUS TEXT" → ISN'T "OK"::
+    if (response.statusText !== "OK") {
+      // ERROR MESSAGE:
+      throw new Error(response.data.message);
+    }
+    // RETURN "DATA":
+    return response.data;
+  } catch (err) {
+    // ERROR MESSAGE:
+    return { error: err.response.data.message || err.message };
+  }
+};
+
 // EXPORTED ASYNC FUNCTION "GET ORDER":
 export const getOrder = async (id) => {
   try {

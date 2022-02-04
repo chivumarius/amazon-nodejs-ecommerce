@@ -1,6 +1,6 @@
 // IMPORTS:
 import express from "express";
-import expressAysncHandler from "express-async-handler";
+import expressAsyncHandler from "express-async-handler";
 import { isAuth, isAdmin } from "../utils";
 import Product from "../models/productModel";
 
@@ -10,7 +10,7 @@ const productRouter = express.Router();
 // PRODUCT ROUTER - "GET('/')"
 productRouter.get(
   "/",
-  expressAysncHandler(async (req, res) => {
+  expressAsyncHandler(async (req, res) => {
     // FINDING "PRODUCT":
     const products = await Product.find({});
     // SENDING THOSE "PRODUCTS":
@@ -21,7 +21,7 @@ productRouter.get(
 // PRODUCT ROUTER - "GET('/:ID')"
 productRouter.get(
   "/:id",
-  expressAysncHandler(async (req, res) => {
+  expressAsyncHandler(async (req, res) => {
     // FINDING "PRODUCT" → BY "ID":
     const product = await Product.findById(req.params.id);
     // SENDING THISE "PRODUCT":
@@ -34,7 +34,7 @@ productRouter.post(
   "/",
   isAuth,
   isAdmin,
-  expressAysncHandler(async (req, res) => {
+  expressAsyncHandler(async (req, res) => {
     // CREATING "NEW PRODUCT":
     const product = new Product({
       name: "sample product",
@@ -65,7 +65,7 @@ productRouter.put(
   "/:id",
   isAuth,
   isAdmin,
-  expressAysncHandler(async (req, res) => {
+  expressAsyncHandler(async (req, res) => {
     // GETTING "PRODUCT ID":
     const productId = req.params.id;
 
@@ -105,7 +105,7 @@ productRouter.delete(
   "/:id",
   isAuth,
   isAdmin,
-  expressAysncHandler(async (req, res) => {
+  expressAsyncHandler(async (req, res) => {
     // FINDING "PRODUCT" → BY "ID":
     const product = await Product.findById(req.params.id);
 
