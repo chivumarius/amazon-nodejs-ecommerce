@@ -478,3 +478,32 @@ export const payOrder = async (orderId, paymentResult) => {
     return { error: err.response ? err.response.data.message : err.message };
   }
 };
+
+// EXPORTED ASYNC FUNCTION "DELIVER ORDER":
+export const deliverOrder = async (orderId) => {
+  try {
+    // GETTIG THE "USER TOKEN":
+    const { token } = getUserInfo();
+
+    // SENDING "AXIOS" REQUEST:
+    const response = await axios({
+      url: `${apiUrl}/api/orders/${orderId}/deliver`,
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    // IF "STATUS TEXT" ISN'T "CREATED":
+    if (response.statusText !== "OK") {
+      // ERROR MESSAGE:
+      throw new Error(response.data.message);
+    }
+    // OTHERWISE WE WILL RETURN THE "DATA":
+    return response.data;
+  } catch (err) {
+    // ERROR MESSAGE:
+    return { error: err.response ? err.response.data.message : err.message };
+  }
+};

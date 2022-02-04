@@ -134,5 +134,31 @@ orderRouter.put(
   })
 );
 
+// THE "ROUTE" → FOR UPDATING "ID/ DELIVER":
+orderRouter.put(
+  "/:id/deliver",
+  isAuth,
+  expressAsyncHandler(async (req, res) => {
+    // GETTING "INFORMATION" ABOUT THIS "ORDER ID"
+    const order = await Order.findById(req.params.id);
+
+    // CHECKING "IF THE ORDER EXIST":
+    if (order) {
+      // SETTINGS:
+      order.isDelivered = true;
+      order.deliveredAt = Date.now();
+
+      // SAVEING "UPDATED ORDER":
+      const updatedOrder = await order.save();
+
+      // SENDING MESSAGE OF CONFIRMATION:
+      res.send({ message: "Order Delivered", order: updatedOrder });
+    } else {
+      // ERROR MESSAGE "404":
+      res.status(404).send({ message: "Order Not Found." });
+    }
+  })
+);
+
 // EXPORT:
 export default orderRouter;

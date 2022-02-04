@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 // IMPORTS:
 import DashboardMenu from "../components/DashboardMenu";
 import { getOrders, deleteOrder } from "../api";
@@ -10,7 +11,6 @@ const OrderListScreen = {
     // -----------------------------------------------------------------
     // (1) "DELETE BUTTON" HANDLER:
     // -----------------------------------------------------------------
-
     // GETTING ACCESS → TO "DELETE" BUTTONS:
     const deleteButtons = document.getElementsByClassName("delete-button");
 
@@ -38,6 +38,23 @@ const OrderListScreen = {
           // CALLING "HIDE LOADING" FUNCTION:
           hideLoading();
         }
+      });
+    });
+    // -----------------------------------------------------------------
+
+    // -----------------------------------------------------------------
+    // (2) "EDIT BUTTON" HANDLER:
+    // -----------------------------------------------------------------
+
+    // GETTING ACCESS → TO "EDIT-BUTTON":
+    const editButtons = document.getElementsByClassName("edit-button");
+
+    // CONVERTING "EDIT BUTTONS" → TO "ARRAY":
+    Array.from(editButtons).forEach((editButton) => {
+      // ADDING "CLIC" EVENT LISTENER:
+      editButton.addEventListener("click", async () => {
+        // REDIRECTING "USER" → TO "ORDER ID":
+        document.location.hash = `/order/${editButton.id}`;
       });
     });
   },

@@ -1,3 +1,4 @@
+// IMPORTS:
 import {
   parseRequestUrl,
   showLoading,
@@ -5,23 +6,10 @@ import {
   showMessage,
   rerender,
 } from "../utils";
-import { getOrder, getPaypalClientId, payOrder } from "../api";
+import { getOrder, getPaypalClientId, payOrder, deliverOrder } from "../api";
+import { getUserInfo } from "../localStorage";
 
-const addPaypalSdk = async (totalPrice) => {
-  const clientId = await getPaypalClientId();
-  showLoading();
-  if (!window.paypal) {
-    const script = document.createElement("script");
-    script.type = "text/javascript";
-    script.src = "https://www.paypalobjects.com/api/checkout.js";
-    script.async = true;
-    script.onload = () => handlePayment(clientId, totalPrice);
-    document.body.appendChild(script);
-  } else {
-    handlePayment(clientId, totalPrice);
-  }
-};
-
+// FUNCTION "HANDLE PAYMENT":
 const handlePayment = (clientId, totalPrice) => {
   window.paypal.Button.render(
     {
@@ -50,6 +38,7 @@ const handlePayment = (clientId, totalPrice) => {
           ],
         });
       },
+
       onAuthorize(data, actions) {
         return actions.payment.execute().then(async () => {
           showLoading();
@@ -71,12 +60,45 @@ const handlePayment = (clientId, totalPrice) => {
   });
 };
 
+// ASYNC FUNCTION "ADD PAYPAL  SDK":
+const addPaypalSdk = async (totalPrice) => {
+  const clientId = await getPaypalClientId();
+
+  showLoading();
+
+  if (!window.paypal) {
+    const script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src = "https://www.paypalobjects.com/api/checkout.js";
+    script.async = true;
+    script.onload = () => handlePayment(clientId, totalPrice);
+    document.body.appendChild(script);
+  } else {
+    handlePayment(clientId, totalPrice);
+  }
+};
+
+// OBJECT "ORDER  SCREEN":
 const OrderScreen = {
-  after_render: async () => {},
-
-  render: async () => {
+  // METHOD "AFRER_RENDER"
+  after_render: async () => {
+    // ADDING EVENT FOR "DELIVER-ORDER-BUTTON":
     const request = parseRequestUrl();
+    document
+      .getElementById("deliver-order-button")
+      .addEventListener("click", async () => {
+        showLoading();
+        await deliverOrder(request.id);
+        hideLoading();
+        showMessage("Order Delivered.");
+        rerender(OrderScreen);
+      });
+  },
 
+  // METHOD "RENDER"
+  render: async () => {
+    const { isAdmin } = getUserInfo();
+    const request = parseRequestUrl();
     const {
       _id,
       shipping,
@@ -91,11 +113,11 @@ const OrderScreen = {
       isPaid,
       paidAt,
     } = await getOrder(request.id);
-
     if (!isPaid) {
       addPaypalSdk(totalPrice);
     }
 
+    // TEMPLATE LITERALS:
     return `
       <div>
         <h1>Order ${_id}</h1>
@@ -163,6 +185,12 @@ const OrderScreen = {
                    <li class="total"><div>Order Total</div><div>$${totalPrice}</div></li>                  
                    <li><div class="fw" id="paypal-button"></div></li>
                    <li>
+                      ${
+                        isPaid && !isDelivered && isAdmin
+                          ? `<button id="deliver-order-button" class="primary fw">Deliver Order</button>`
+                          : ""
+                      }
+                   <li>
                  
           </div>
         </div>
@@ -171,4 +199,5 @@ const OrderScreen = {
   },
 };
 
+// EXPORT:
 export default OrderScreen;
