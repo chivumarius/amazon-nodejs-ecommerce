@@ -3,9 +3,46 @@ import express from "express";
 import expressAsyncHandler from "express-async-handler";
 import { isAuth, isAdmin } from "../utils";
 import Order from "../models/orderModel";
+import User from "../models/userModel";
 
 // "ORDER ROUTER" INSTANCE:
 const orderRouter = express.Router();
+
+// ORDER ROUTE "GET('/SUMMARY')" → FOR "ORDERS HISTORY":
+orderRouter.get(
+  "/summary",
+  isAuth,
+  isAdmin,
+  expressAsyncHandler(async (req, res) => {
+    // GETTING ALL "ORDERS"
+    // BY USING THE MONGODB "AGGREGATE()" FUNCTION (INSTEAD OF "FIND()"):
+    const orders = await Order.aggregate([
+      {
+        // GROUPING BY:
+        $group: {
+          _id: null,
+          numOrders: { $sum: 1 },
+          totalSales: { $sum: "$totalPrice" },
+        },
+      },
+    ]);
+
+    // GETTING ALL "USERS"
+    // BY USING THE MONGODB "AGGREGATE()" FUNCTION (INSTEAD OF "FIND()"):
+    const users = await User.aggregate([
+      {
+        // GROUPING BY:
+        $group: {
+          _id: null,
+          numUsers: { $sum: 1 },
+        },
+      },
+    ]);
+
+    // SENDING "USERS" & "ORDERS":
+    res.send({ users, orders });
+  })
+);
 
 // ORDER ROUTE "GET('/')" → FOR "ORDERS HISTORY":
 orderRouter.get(

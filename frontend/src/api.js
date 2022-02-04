@@ -507,3 +507,32 @@ export const deliverOrder = async (orderId) => {
     return { error: err.response ? err.response.data.message : err.message };
   }
 };
+
+// EXPORTED ASYNC FUNCTION "GET SUMMARY":
+export const getSummary = async () => {
+  try {
+    // GETTIG THE "USER TOKEN":
+    const { token } = getUserInfo();
+
+    // SENDING "AXIOS" REQUEST:
+    const response = await axios({
+      url: `${apiUrl}/api/orders/summary`,
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "content-type": "application/json",
+      },
+    });
+
+    // IF "STATUS TEXT" ISN'T "CREATED":
+    if (response.statusText !== "OK") {
+      // ERROR MESSAGE:
+      throw new Error(response.data.message);
+    } else {
+      // OTHERWISE WE WILL RETURN THE "DATA":
+      return response.data;
+    }
+  } catch (err) {
+    // ERROR MESSAGE:
+    return { error: err.response ? err.response.data.message : err.message };
+  }
+};

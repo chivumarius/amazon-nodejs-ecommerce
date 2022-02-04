@@ -405,6 +405,15 @@ STEPS:
     6. redirect to order details on edit action
 
 41. Deliver Order
+
     1. if order is payed show deliver button for admin
     2. handle click on deliver button
     3. set state to delivered
+
+42. Show Summary Report in Dashboard
+    1. create summary section
+    2. style summary
+    3. create summary backend
+    4. create getSummary in api.js
+    5. load data in dashboard screen
+    6. show 3 boxes for Users, Orders and Sales

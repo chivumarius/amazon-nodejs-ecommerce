@@ -686,3 +686,55 @@ _________________________________________________________ */
 .tr-action {
   width: 10rem;
 }
+
+/* ______________________________________________________ 
+  
+    SEC. "SUMMARY  ITEMS" → FROM "DASHBOARD"
+_________________________________________________________ */
+
+/* CLS. "SUMMARY-ITEMS" */
+.summary-items {
+  display: flex;
+  justify-content: space-around;
+  list-style-type: none;
+  flex-wrap: wrap;
+  padding: 0;
+  margin: 0;
+}
+
+/* DIRECT "LI" → FROM CLS. "SUMMARY-ITEMS" */
+.summary-items > li {
+  border: 0.1rem #c0c0c0 solid;
+  margin: 2rem;
+  border-radius: 0.5rem;
+  flex: 1 1 20rem;
+}
+
+/* CLS. "SUMMARY-TITLE" */
+.summary-title {
+  background-color: #e0e0e0;
+  font-size: 2rem;
+  padding: 1rem;
+}
+
+/* CLS. "SUMMARY-BODY" */
+.summary-body {
+  font-size: 4rem;
+  padding: 1rem;
+  text-align: center;
+}
+
+/* "COLOR 1" → FOR CLS. "SUMMARY-TITL" */
+.summary-title.color1 {
+  background-color: #f0e0e0;
+}
+
+/* "COLOR 2" → FOR CLS. "SUMMARY-TITL" */
+.summary-title.color2 {
+  background-color: #e0f0e0;
+}
+
+/* "COLOR 3" → FOR CLS. "SUMMARY-TITL" */
+.summary-title.color3 {
+  background-color: #e0e0f0;
+}
