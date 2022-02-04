@@ -4,6 +4,7 @@ import expressAsyncHandler from "express-async-handler";
 import { isAuth, isAdmin } from "../utils";
 import Order from "../models/orderModel";
 import User from "../models/userModel";
+import Product from "../models/productModel";
 
 // "ORDER ROUTER" INSTANCE:
 const orderRouter = express.Router();
@@ -39,8 +40,33 @@ orderRouter.get(
       },
     ]);
 
-    // SENDING "USERS" & "ORDERS":
-    res.send({ users, orders });
+    // GETTING ALL "DAYLY ORDERS"
+    // BY USING THE MONGODB "AGGREGATE()" FUNCTION (INSTEAD OF "FIND()"):
+    const dailyOrders = await Order.aggregate([
+      {
+        // GROUPING BY:
+        $group: {
+          _id: { $dateToString: { format: "%Y-%m-%d", date: "$createdAt" } },
+          orders: { $sum: 1 },
+          sales: { $sum: "$totalPrice" },
+        },
+      },
+    ]);
+
+    // GETTING ALL "PRODUCT CATEGORIES"
+    // BY USING THE MONGODB "AGGREGATE()" FUNCTION (INSTEAD OF "FIND()"):
+    const productCategories = await Product.aggregate([
+      {
+        // GROUPING BY:
+        $group: {
+          _id: "$category",
+          count: { $sum: 1 },
+        },
+      },
+    ]);
+
+    // SENDING DATA:
+    res.send({ users, orders, dailyOrders, productCategories });
   })
 );
 

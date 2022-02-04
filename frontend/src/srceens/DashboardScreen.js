@@ -1,4 +1,6 @@
 // IMPORTS:
+/* eslint-disable no-new */
+import Chartist from "chartist";
 import DashboardMenu from "../components/DashboardMenu";
 import { getSummary } from "../api";
 
@@ -7,11 +9,41 @@ let summary = {};
 
 // OBJECT ""DASHBOARD SCREEN:
 const DashboardScreen = {
-  // METHOD "AFTER_RENDER":
-  after_render: () => {},
+  // METHOD "AFTER_RENDER"
+  // IN WITCH WE USE THE "CHARTIST" LYBRARY:
+  after_render: () => {
+    // CREATING "LINEAR CHART":
+    new Chartist.Line(
+      ".ct-chart-line",
+      {
+        labels: summary.dailyOrders.map((x) => x._id),
+        series: [summary.dailyOrders.map((x) => x.sales)],
+      },
+      {
+        showArea: true,
+      }
+    );
+
+    // CREATING "PIE CHART":
+    new Chartist.Pie(
+      ".ct-chart-pie",
+      {
+        labels: summary.productCategories.map((x) => x._id),
+        series: summary.productCategories.map((x) => x.count),
+      },
+      {
+        donut: true,
+        donutWidth: 60,
+        startAngle: 270,
+        showLabel: true,
+        donutSolid: true,
+      }
+    );
+  },
 
   // METHOD "RENDER":
   render: async () => {
+    // GETTING "SUMMARY":
     summary = await getSummary();
 
     // METHOD "RENDER":
@@ -22,6 +54,7 @@ const DashboardScreen = {
         <div class="dashboard-content">
           <h1>Dashboard</h1>
          
+          <!-- LIST -->
           <ul class="summary-items">
             <!-- USERS -->
             <li>
@@ -49,6 +82,23 @@ const DashboardScreen = {
               <div class="summary-body">$${summary.orders[0].totalSales}</div>
             </li>
           </ul>
+
+
+          <!-- CHARTS -->
+          <div class="charts">
+
+            <!-- SALES (LINE CHART) -->
+            <div>
+              <h2>Sales</h2>
+              <div class="ct-perfect-fourth ct-chart-line"></div>
+            </div>
+
+            <!-- CATEGORIES (PIE CHART) -->
+            <div>
+              <h2>Categories</h2>
+              <div class="ct-perfect-fourth ct-chart-pie"></div>
+            </div>
+          </div>   
         
         </div>
       </div>

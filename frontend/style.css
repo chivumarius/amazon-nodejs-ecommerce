@@ -738,3 +738,18 @@ _________________________________________________________ */
 .summary-title.color3 {
   background-color: #e0e0f0;
 }
+
+/* ______________________________________________________ 
+  
+    SEC. "CHARTS" → FROM "DASHBOARD"
+_________________________________________________________ */
+/* CLS. "CHARTS" */
+.charts {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* DIRECT "DIV" → FROM CLS. "CHARTS" */
+.charts > div {
+  flex: 1;
+}
