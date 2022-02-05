@@ -1,9 +1,53 @@
-AMAZON - NODEJS ECOMMERCE
+# AMAZON NODEJS ECOMMERCE
 
-STEPS:
+# Features
+
+1. Home Screen
+   1. Static Web Page Design
+   2. CSS Grid to create website layout
+   3. Flexbox to shape product thumbnails and responsive design
+2. Product Screen
+   1. create single page application
+   2. Create buttons and add events to buttons
+3. Cart Screen
+   1. Save and retrieve data in local storage
+   2. Master in javascript array functions
+   3. Use combo box and add event to it
+   4. re-render screen based on changes in item count
+4. Sign-in and Register Screen
+   1. Create dynamic form
+   2. Input validation in frontend and backend
+   3. Create web server using node.js
+   4. Connect to Mongodb database
+   5. Add registered user to the database
+   6. Authenticate user based on email and password
+   7. Using Jsonwebtoken to authorize users
+5. Shipping and Payment Screen
+   1. Create wizard form to get user data in multiple steps
+   2. Save user info in the local storage
+6. Place Order Screen
+   1. Validate and create order in the database
+7. Order Screen
+   1. Payment with paypal
+   2. Show order state based on user and admin activities
+8. Profile Screen
+   1. Create authenticated routes
+   2. enable user to update their informations
+   3. enable user to logout and clear local storage
+   4. show list of orders to user and link it to details
+9. Dashboard Screen
+   1. Create professional dashboard using pure CSS
+   2. Using chart library to show sales information
+10. Order Screen
+    1. Enable admin to mange orders
+    2. show loading message and alert message
+11. Product Screen
+    1. enable admin to manage products
+    2. upload product images to server
+
+# Lessons
 
 1. Create Folder Structure
-
    1. create root folder as jsamazona
    2. add frontend and backend folder
    3. create src folder in frontend
@@ -13,25 +57,20 @@ STEPS:
    7. add start command as live-server src --verbose
    8. run npm start
    9. check result
-
 2. Design Website
-
    1. create style.css
    2. link style.css to index.html
    3. create div.grid-container
    4. create header, main and footer
    5. style html, body
    6. style grid-container, header, main and footer
-
 3. Create Static Home Screen
-
    1. create ul.products
    2. create li
    3. create div.product
    4. add .product-image, .product-name, .product-brand, .product-price
    5. style ul.products and internal divs
    6. duplicate 2 times to show 3 products
-
 4. Render Dynamic Home Screen
    1. create data.js
    2. export an array of 6 products
@@ -47,7 +86,6 @@ STEPS:
    12. set main_container innerHTML to HomeScreen.render()
    13. set load event of window to router() function
 5. Build Url Router
-
    1. create routes as route:screen object for home screen
    2. create utils.js
    3. export parseRequestURL()
@@ -58,9 +96,7 @@ STEPS:
    8. build parsedUrl and compare with routes
    9. if route exists render it, else render Error404
    10. create screens/Error404.js and render error message
-
 6. Create Node.JS Server
-
    1. run npm init in root jsamazona folder
    2. npm install express
    3. create server.js
@@ -70,18 +106,14 @@ STEPS:
    7. create route for /api/products
    8. return products in data.js
    9. run npm start
-
 7. Load Products From Backend
-
    1. edit HomeScreen.js
    2. make render async
    3. fetch products from '/api/products' in render()
    4. make router() async and call await HomeScreen.render()
    5. use cors on backend
    6. check the result
-
 8. Add Webpack
-
    1. cd frontend
    2. npm install -D webpack webpack-cli webpack-dev-server
    3. npm uninstall live-server
@@ -93,16 +125,13 @@ STEPS:
    9. npm start
    10. npm install axios
    11. change fetch to axios in HomeScreen
-
 9. Install Babel For ES6 Syntax
-
    1. npm install -D babel core, cli, node, preset-env
    2. Create .babelrc and set presets to @babel/preset-env
    3. npm install -D nodemon
    4. set start: nodemon --watch backend --exec babel-node backend/server.js
    5. convert require to import in server.js
    6. npm start
-
 10. Enable Code Linting
     1. npm install -D eslint
     2. install VSCode eslint extension
@@ -114,14 +143,11 @@ STEPS:
     8. set parserOptions to ecmaVersion 11 and sourceType to module
     9. set rules for no-console to 0 to ignore linting error
 11. Install VSCode Extension
-
     1. JavaScript (ES6) code snippets
     2. ES7 React/Redux/GraphQL/React-Native snippets
     3. Prettier - Code formatter
     4. HTML&LESS grammar injections
-
 12. Create Rating Component
-
     1. create components/Rating.js
     2. link to fontawesome.css in index.html
     3. create div.rating
@@ -132,15 +158,11 @@ STEPS:
     8. style div.rating, span and last span
     9. Edit HomeScreen
     10. Add div.product-rating and use Rating component
-
 13. Product Screen
-
     1. get product id from request
     2. implement /api/product/:id api
     3. send Ajax request to product api
-
 14. Product Screen UI
-
     1. create back to result link
     2. create div.details with 3 columns
     3. column 1 for product image
@@ -148,16 +170,12 @@ STEPS:
     5. column 3 form product action
     6. style .details and all columns
     7. create add to cart button with add-button id
-
 15. Product Screen Action
-
     1. after_render() to add event to the button
     2. add event handler for the button
     3. redirect user to cart/:product_id
     4. implement after_render in index.js
-
 16. Add To Cart Action
-
     1. create CartScreen.js
     2. parseRequestUrl
     3. getProduct(request.id)
@@ -167,9 +185,7 @@ STEPS:
     7. if existItem update qty
     8. else add item
     9. setCartItems
-
 17. Cart Screen UI
-
     1. cartItems = getCartItems()
     2. create 2 columns for cart items and cart action
     3. cartItems.length === 0 ? cart is empty
@@ -178,9 +194,7 @@ STEPS:
     6. Subtotal
     7. Proceed to Checkout button
     8. Add CSS Style
-
 18. Update and Delete Cart Items
-
     1. add qty select next to each item
     2. after_render()
     3. add change event to qty select
@@ -196,9 +210,7 @@ STEPS:
     13. setCartItems( getCartItems().filter)
     14. if id === parseRequestUrl().id? redirect to '/cart'
     15. else rerender(CartScreen);
-
 19. Connect To MongoDB and Create Admin User
-
     1. npm install mongoose
     2. connect to mongodb
     3. create config.js
@@ -208,15 +220,11 @@ STEPS:
     7. create userSchema and userModel
     8. create userRoute
     9. create createadmin route
-
 20. Sign-in Screen UI
-
     1. create SigninScreen
     2. render email and password fields
     3. style signin form
-
 21. Sign-in Screen Backend
-
     1. create signin api in backend
     2. create route for /api/users/signin
     3. create check user name and password
@@ -233,18 +241,14 @@ STEPS:
     14. add generateToken to utils.js
     15. return token
     16. test with correct user and password
-
 22. Sign-in Screen Action
-
     1. after_render handle form submit
     2. create signin request in frontend
     3. show alert if email or password is incorrect
     4. Add getUserInfo and setUserInfo to localStorage
     5. create Header component
     6. if userInfo.email exist show user name otherwise show signin
-
 23. Create Progress Indicator and Alert Component
-
     1. create overlay loading div in index.html
     2. Style overlay loading
     3. create showLoading() function
@@ -259,17 +263,13 @@ STEPS:
     12. button id message-overlay-close-button OK
     13. add class active to it
     14. add event listener for button to call callback
-
 24. Register Screen
-
     1. create RegisterScreen.js
     2. add form elements
     3. after_render handle form submit
     4. create register request in frontend
     5. create register api in backend
-
 25. User Profile Screen
-
     1. create ProfileScreen.js
     2. add form elements
     3. after_render handle form submit
@@ -277,9 +277,7 @@ STEPS:
     5. create profile update api in backend
     6. create isAuth in utils.js and use in update profile
     7. implement sign out
-
 26. Checkout Wizard
-
     1. create CheckoutSteps.js
     2. create div elements for step 1 to 4
     3. create redirectUser() in utils.js
@@ -289,25 +287,19 @@ STEPS:
     7. copy shipping screen and as payment screen
     8. define getPayment and setPayment
     9. redirect user to PlaceOrder.js
-
 27. PlaceOrder Screen UI
     1. create PlaceOrder.js
     2. style elements
 28. PlaceOrder Screen Action
-
     1. handle place order button click
     2. createOrder api
     3. create orderModel
     4. create orderRouter
     5. create post order route
-
 29. Order Screen
-
     1. create OrderScreen.js
     2. style elements
-
 30. PayPal Payment
-
     1. get client id from paypal
     2. set it in .env file
     3. create route form /api/paypal/clientId
@@ -318,51 +310,37 @@ STEPS:
     8. create payOrder in api.js
     9. create route for /:id/pay in orderRouter.js
     10. rerender after pay order
-
 31. Display Orders History
-
     1. create customer orders api
     2. create api for getMyOrders
     3. show orders in profile screen
     4. style orders
-
 32. Admin Dashboard UI
-
     1. Header.js
     2. if user is admin show Dashboard
     3. create DashboardScreen
     4. create DashboardMenu
     5. Style dashboard
-
 33. Admin Products UI
-
     1. create ProductListScreen.js
     2. show products with edit and delete button
     3. show create product button
-
 34. Create Product
-
     1. create product model
     2. implement create product route
     3. create product function in api.js
     4. call create product function in ProductListScreen
     5. redirect to edit product
-
 35. Edit Product UI
-
     1. create ProductEditScreen.js
     2. load product data from backend
     3. handle form submit
     4. save product in backend
-
 36. Edit Product Backend
-
     1. handle form submit
     2. create updateProduct
     3. save product in backend
-
 37. Upload Product Image
-
     1. npm install multer
     2. create routes/uploadRoute.js
     3. import express and multer
@@ -379,47 +357,37 @@ STEPS:
     14. call uploadProductImage()
     15. create uploadProductImage in api.js
     16. update server.js
-
 38. Build Project
-
     1. create build script for frontend
     2. create build script for backend
     3. update sever.js to serve frontend build folder and uploads folder
     4. stop running frontend
     5. npm run build
     6. check localhost:5000 for running website and showing images
-
 39. Delete Product
-
     1. update ProductListScreen.js
     2. handle delete button
     3. rerender after deletion
-
 40. Admin Orders
-
     1. create Admin Order menu in header
     2. create AdminOrder.js
     3. load orders from backend
     4. list them in the screen
     5. show delete and edit button
     6. redirect to order details on edit action
-
 41. Deliver Order
-
     1. if order is payed show deliver button for admin
     2. handle click on deliver button
     3. set state to delivered
-
 42. Show Summary Report in Dashboard
-
     1. create summary section
     2. style summary
     3. create summary backend
     4. create getSummary in api.js
     5. load data in dashboard screen
     6. show 3 boxes for Users, Orders and Sales
-
 43. Show Chart in Dashboard
+
     1. import chartist
     2. add chartist css to index.html
     3. create linear chart for daily sales
