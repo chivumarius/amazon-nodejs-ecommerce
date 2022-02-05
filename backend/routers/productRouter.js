@@ -134,5 +134,49 @@ productRouter.delete(
   })
 );
 
+// PRODUCT ROUTER - "POST('/:ID/REVIEWS')"
+productRouter.post(
+  "/:id/reviews",
+  isAuth,
+  expressAsyncHandler(async (req, res) => {
+    // GETTING THE "PRODUCT":
+    const product = await Product.findById(req.params.id);
+
+    // CHECKING - IF "PRODUCT" EXIST:
+    if (product) {
+      // CREATING "REVIEW" OBJECT:
+      const review = {
+        rating: req.body.rating,
+        comment: req.body.comment,
+        user: req.user._id,
+        name: req.user.name,
+      };
+
+      // PUSHING "REVIEWS" → TO THE "LIST OF REVIEWS":
+      product.reviews.push(review);
+
+      // THE "PRODUCT .RATING":
+      product.rating =
+        product.reviews.reduce((a, c) => c.rating + a, 0) /
+        product.reviews.length;
+
+      // THE "NUMBER OF REVIEWS" → FOR THE "PRODUCT":
+      product.numReviews = product.reviews.length;
+
+      // SAVING THE "UPDATED PRODUCT":
+      const updatedProduct = await product.save();
+
+      // SENDING - SUCCESS MESSAGE "201":
+      res.status(201).send({
+        message: "Comment Created.",
+        data: updatedProduct.reviews[updatedProduct.reviews.length - 1],
+      });
+    } else {
+      // ERROR MESSAGE:
+      throw Error("Product does not exist.");
+    }
+  })
+);
+
 // EXPORT:
 export default productRouter;

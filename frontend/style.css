@@ -43,9 +43,11 @@ button {
   cursor: pointer;
 }
 
-/* "BUTTON" & "INPUT" */
+/* "BUTTON",  "INPUT", "SELECT"  &  "TEXTAREA"  */
 input,
-button {
+button,
+select,
+textarea {
   font: 1.6rem helvetica;
   padding: 1rem;
   border: 0.1rem #808080 solid;
@@ -756,7 +758,7 @@ _________________________________________________________ */
 
 /* ______________________________________________________ 
   
-    SEC. "SEARCH" → FROM "DASHBOARD"
+    SEC. "SEARCH"
 _________________________________________________________ */
 
 /* CLS. "SEARCH" */
@@ -798,7 +800,7 @@ form.search-form::after {
 
 /* ______________________________________________________ 
   
-    SEC. "ASIDE BAR MENU" → FROM "DASHBOARD"
+    SEC. "ASIDE BAR MENU" 
 _________________________________________________________ */
 
 /* "ASIDE" */
@@ -881,4 +883,21 @@ ul.categories {
   border: none;
   color: #ffffff;
   cursor: pointer;
+}
+
+/* ______________________________________________________ 
+  
+    SEC. "REVIEW" FOR "PRODUCTS"
+_________________________________________________________ */
+
+/* CLS. "REVIEW" */
+.review {
+  list-style-type: none;
+  padding: 0;
+}
+
+/* "LI"  → FROM CLS. "REVIEW" */
+.review li {
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
 }

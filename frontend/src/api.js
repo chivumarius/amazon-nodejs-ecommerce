@@ -91,6 +91,36 @@ export const createProduct = async () => {
   }
 };
 
+// EXPORTED ASYNC FUNCTION "CREATE REVIEW":
+export const createReview = async (productId, review) => {
+  try {
+    // GETTING THE "USER ADMIN TOKEN"
+    const { token } = getUserInfo();
+
+    // CREATING "AJAX REQUEST" BY "AXIOS()":
+    const response = await axios({
+      url: `${apiUrl}/api/products/${productId}/reviews`,
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      data: review,
+    });
+
+    // CHECKING IF THERE WAS "CREATED":
+    if (response.statusText !== "Created") {
+      throw new Error(response.data.message);
+    }
+
+    // OTHERWISE RETURN "DATA":
+    return response.data;
+  } catch (err) {
+    // ERROR MESSAGE:
+    return { error: err.response.data.message || err.message };
+  }
+};
+
 // EXPORTED ASYNC FUNCTION "DELETE PRODUCT" → BY "PRODUCT ID":
 export const deleteProduct = async (productId) => {
   try {

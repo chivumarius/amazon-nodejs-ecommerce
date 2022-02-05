@@ -380,12 +380,14 @@
     2. handle click on deliver button
     3. set state to delivered
 42. Show Summary Report in Dashboard
+
     1. create summary section
     2. style summary
     3. create summary backend
     4. create getSummary in api.js
     5. load data in dashboard screen
     6. show 3 boxes for Users, Orders and Sales
+
 43. Show Chart in Dashboard
 
     1. import chartist
@@ -393,7 +395,16 @@
     3. create linear chart for daily sales
     4. create pie chart for product categories
 
-44. Show Categories In Sidebar Menu
+44. Product Search Bar
+
+    1. create search bar in Header.js
+    2. add style
+    3. handle submit form
+    4. edit parse url to get query string
+    5. update product list api for search keyword
+
+45. Show Categories In Sidebar Menu
+
     1. create aside-open-button in Header.js
     2. add event to open aside
     3. create Aside.js component
@@ -403,3 +414,9 @@
     7. Update index.js to render aside 9.
     8. call getCategories
     9. create getCategories in api.js
+
+46. Review Products
+    1. create review model
+    2. create review form
+    3. create review api
+    4. style review form
