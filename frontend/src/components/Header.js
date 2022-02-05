@@ -19,6 +19,14 @@ const Header = {
         // REDIRECT "USER" → TO THE "SERCH KEYWORD"
         document.location.hash = `/?q=${searchKeyword}`;
       });
+
+    // CREATING EVENT LISTENER → FOR "ASIDE-OPEN-BUTTON":
+    document
+      .getElementById("aside-open-button")
+      .addEventListener("click", async () => {
+        // CALLING THIS FUNCTION → TO "OPEN ASIDE BAR" FOR US:
+        document.getElementById("aside-container").classList.add("open");
+      });
   },
 
   // METH. ""RENDER:
@@ -29,8 +37,14 @@ const Header = {
 
     // TEMPLATE LITERALS:
     return ` 
-      <!-- LOGO -->
+      <!-- BRAND -->
       <div class="brand">
+        <!-- ASIDE OPEN BUTTON (FOR HAMBURG MENU) -->
+        <button id="aside-open-button">
+          &#9776;
+        </button>
+        
+        <!-- LOGO -->
         <a href="/#/">amazon</a>
       </div>
 

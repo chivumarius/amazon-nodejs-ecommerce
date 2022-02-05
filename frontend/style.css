@@ -795,3 +795,90 @@ form.search-form::after {
   clear: both;
   display: table;
 }
+
+/* ______________________________________________________ 
+  
+    SEC. "ASIDE BAR MENU" → FROM "DASHBOARD"
+_________________________________________________________ */
+
+/* "ASIDE" */
+aside {
+  position: fixed;
+  width: 30rem;
+  background-color: #ffffff;
+  height: 100%;
+  z-index: 1;
+  /* HIDE IT → ON THE AXIS OF "X "*/
+  transform: translateX(-30.1rem);
+  transition: all 0.5s;
+  border-right: 0.1rem #808080 solid;
+}
+
+/* "ASIDE .OPEN" */
+aside.open {
+  /* SHOW IT → ON THE "SCREEN" */
+  transform: translateX(0);
+}
+
+/* CLS. "ASODE-HEADER" */
+.aside-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 0.5rem 1rem 2rem;
+  color: #808080;
+}
+
+/* CLS. "ASIDE-CLOSE-BUTTON-" */
+.aside-close-button {
+  width: 3rem;
+  height: 3rem;
+  font-size: 2rem;
+  cursor: pointer;
+  padding: 0;
+}
+
+/* CLS. "CATEGORIES" → FROM "LI"  */
+ul.categories {
+  padding: 0;
+}
+
+/*  DIRECT "LI" → FROM CLS. "CATEGORIES"  */
+.categories > li {
+  list-style-type: none;
+}
+
+/* DIRECT "A" → FROM  DIRECT "LI" → FROM CLS. "CATEGORIES"  */
+.categories > li > a {
+  display: flex;
+  padding: 1rem;
+  padding-left: 2rem;
+  justify-content: space-between;
+}
+
+/* DIRECT "SPAN" → FROM DIRECT "A" → FROM  DIRECT "LI" → FROM CLS. "CATEGORIES"  */
+.categories > li > a > span {
+  font-size: 1.4rem;
+  color: #808080;
+}
+
+/*  */
+.categories > li > a:hover span {
+  color: #444444;
+}
+
+/* DIRECT "A:HOVER" → FROM  DIRECT "LI" → FROM CLS. "CATEGORIES"  */
+.categories > li > a:hover {
+  background-color: #f0f0f0;
+  color: #444444;
+}
+
+/* "BUTTON" → FROM CLS. "BRAND" */
+.brand button {
+  font-size: 3rem;
+  padding: 0.5rem;
+  background: none;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+}

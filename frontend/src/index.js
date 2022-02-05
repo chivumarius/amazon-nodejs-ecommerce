@@ -16,6 +16,7 @@ import DashboardScreen from "./srceens/DashboardScreen";
 import ProductListScreen from "./srceens/ProductListScreen";
 import ProductEditScreen from "./srceens/ProductEditScreen";
 import OrderListScreen from "./srceens/OrderListScreen";
+import Aside from "./components/Aside";
 
 // OBJECT "ROUTES" FUNC.:
 const routes = {
@@ -53,14 +54,27 @@ const router = async () => {
   // CONDITION:
   const screen = routes[parseUrl] ? routes[parseUrl] : Error404Screen;
 
+  // ------------------------------------------------------------
+  // HEADER
+  // ------------------------------------------------------------
   // GETTING "HEADER-CONTAINER":
   const header = document.getElementById("header-container");
-
-  // RENDER "GEADER":
+  // RENDER "HEADER":
   header.innerHTML = await Header.render();
-
   // CALLING "AFTER_RENDER" FOR "HEADER":
   await Header.after_render();
+  // ------------------------------------------------------------
+
+  // ------------------------------------------------------------
+  // SIDEBAR MENU
+  // ------------------------------------------------------------
+  // GETTING "ASIDE-CONTAINER":
+  const aside = document.getElementById("aside-container");
+  // RENDER "ASIDE":
+  aside.innerHTML = await Aside.render();
+  // CALLING "AFTER_RENDER" FOR "HEADER":
+  await Aside.after_render();
+  // ------------------------------------------------------------
 
   // GETTING ACCESS TO "MAIN-CONTAINER":
   const main = document.getElementById("main-container");

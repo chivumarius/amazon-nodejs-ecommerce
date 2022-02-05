@@ -392,3 +392,14 @@
     2. add chartist css to index.html
     3. create linear chart for daily sales
     4. create pie chart for product categories
+
+44. Show Categories In Sidebar Menu
+    1. create aside-open-button in Header.js
+    2. add event to open aside
+    3. create Aside.js component
+    4. Add style aside
+    5. after render close it on click on close button
+    6. Use it in index.html
+    7. Update index.js to render aside 9.
+    8. call getCategories
+    9. create getCategories in api.js
