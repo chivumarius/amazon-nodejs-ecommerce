@@ -753,3 +753,45 @@ _________________________________________________________ */
 .charts > div {
   flex: 1;
 }
+
+/* ______________________________________________________ 
+  
+    SEC. "SEARCH" → FROM "DASHBOARD"
+_________________________________________________________ */
+
+/* CLS. "SEARCH" */
+.search {
+  width: 40%;
+}
+
+/* "INPUT[TEXT]" → FROM "FORM.SEARCH-FORM" */
+form.search-form input[type="text"] {
+  float: left;
+  width: 80%;
+  border-right: none;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+/* "BUTTON" → FROM "FORM.SEARCH-FORM" */
+form.search-form button {
+  float: left;
+  width: 40px;
+  background: #f0c040;
+  border-left: none;
+  cursor: pointer;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+/* "HOVER" FOR "BUTTON" → "FORM.SEARCH-FORM" */
+form.search-form button:hover {
+  background: #0b7dda;
+}
+
+/* CLEAR "FORM.SEARCH-FORM::AFTER" */
+form.search-form::after {
+  content: "";
+  clear: both;
+  display: table;
+}

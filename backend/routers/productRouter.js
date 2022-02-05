@@ -11,9 +11,20 @@ const productRouter = express.Router();
 productRouter.get(
   "/",
   expressAsyncHandler(async (req, res) => {
+    // CONDITION FOR SERCHING KETWORD:
+    const searchKeyword = req.query.searchKeyword
+      ? {
+          name: {
+            $regex: req.query.searchKeyword,
+            $options: "i",
+          },
+        }
+      : {};
+
     // FINDING "PRODUCT":
-    const products = await Product.find({});
-    // SENDING THOSE "PRODUCTS":
+    const products = await Product.find({ ...searchKeyword });
+
+    // SENDING:
     res.send(products);
   })
 );

@@ -1,12 +1,31 @@
-// IMPORT:
+// IMPORTS:
 import { getUserInfo } from "../localStorage";
+import { parseRequestUrl } from "../utils";
 
 // OBJECT "HEADER":
 const Header = {
-  // FUNC. ""RENDER:
+  // METH. "AFTER_RENDER":
+  after_render: () => {
+    // CREATING EVENT LISTENER → FOR "SEARCH-FORM":
+    document
+      .getElementById("search-form")
+      .addEventListener("submit", async (e) => {
+        // PREVENTING "PAGE REFRESH"
+        e.preventDefault();
+
+        // GETTING "SERCH KET":
+        const searchKeyword = document.getElementById("q").value;
+
+        // REDIRECT "USER" → TO THE "SERCH KEYWORD"
+        document.location.hash = `/?q=${searchKeyword}`;
+      });
+  },
+
+  // METH. ""RENDER:
   render: () => {
     // DESTRUCTURING OF "NAME" PROPERTY:
     const { name, isAdmin } = getUserInfo();
+    const { value } = parseRequestUrl();
 
     // TEMPLATE LITERALS:
     return ` 
@@ -15,6 +34,15 @@ const Header = {
         <a href="/#/">amazon</a>
       </div>
 
+      <!-- SEARCH -->
+      <div class="search">
+        <form class="search-form"  id="search-form">
+          <input type="text" name="q" id="q" value="${value || ""}" /> 
+          <button type="submit"><i class="fa fa-search"></i></button>
+        </form>        
+      </div>
+      
+      <!-- RIGHT MENU -->
       <div>
         ${
           name
@@ -40,9 +68,6 @@ const Header = {
       </div>
     `;
   },
-
-  // FUNC. "AFTER_RENDER":
-  after_render: () => {},
 };
 
 // EXPORT:

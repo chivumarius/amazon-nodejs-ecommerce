@@ -3,17 +3,31 @@ import { getCartItems } from "./localStorage";
 
 // EXPORTED FUNCTION "PARSE REQUEST URL":
 export const parseRequestUrl = () => {
+  // GETTING "ADDRESS":
+  const address = document.location.hash.slice(1).split("?")[0];
+
+  // GETTING "QUERY STRING":
+  const queryString =
+    document.location.hash.slice(1).split("?").length === 2
+      ? document.location.hash.slice(1).split("?")[1]
+      : "";
+
   // GETTING "URL":
-  const url = document.location.hash.toLowerCase();
+  const url = address.toLowerCase() || "/";
 
   // SPLITTING "URL" BY "/":
-  const request = url.split("/");
+  const r = url.split("/");
+
+  // GETTING "QUERY":
+  const q = queryString.split("=");
 
   // RETURN → OBJECT:
   return {
-    resource: request[1],
-    id: request[2],
-    verb: request[3],
+    resource: r[1],
+    id: r[2],
+    verb: r[3],
+    name: q[0],
+    value: q[1],
   };
 };
 

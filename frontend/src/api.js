@@ -4,11 +4,17 @@ import { apiUrl } from "./config";
 import { getUserInfo } from "./localStorage";
 
 // EXPORTED ASYNC FUNCTION "GET PRODUCTS":
-export const getProducts = async () => {
+export const getProducts = async ({ searchKeyword = "" }) => {
   try {
+    // DEFINING "WUERY STRING":
+    let queryString = "?";
+
+    // IF "SERCH KEYWORD" EXIST:
+    if (searchKeyword) queryString += `searchKeyword=${searchKeyword}&`;
+
     // SENDING "AJAX REQUEST" BY "AXIOS()":
     const response = await axios({
-      url: `${apiUrl}/api/products`,
+      url: `${apiUrl}/api/products${queryString}`,
       method: "GET",
       headers: {
         "Content-Type": "application/json",

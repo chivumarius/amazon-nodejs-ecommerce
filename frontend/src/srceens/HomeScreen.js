@@ -1,14 +1,17 @@
-/* eslint-disable linebreak-style */
 // IMPORT:
 import Rating from "../components/Rating";
 import { getProducts } from "../api";
+import { parseRequestUrl } from "../utils";
 
 // OBJECT
 const HomeScreen = {
   // ASYNC FUNC."RENDER()":
   render: async () => {
-    // GET PRODUCTS:
-    const products = await getProducts();
+    // GETTING "VALUE" → ENTERED BY THE "USER" → IN THE "SEARCE":
+    const { value } = parseRequestUrl();
+
+    // GET PRODUCTS → WITH TE "VALUE":
+    const products = await getProducts({ searchKeyword: value });
 
     // CHECKING IF THERE IS A "PRODUCT.ERROR":
     if (products.error) {
